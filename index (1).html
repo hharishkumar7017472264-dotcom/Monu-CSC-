@@ -1,0 +1,1948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monu CSC Centre</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans',sans-serif;background:#f0f4ff;color:#1a1a2e;font-size:14px;line-height:1.6}
+:root{
+  --b:#1a3fa8;--b2:#2451c8;--bbg:#e8eeff;
+  --o:#e65c00;--obg:#fff3e8;
+  --g:#1a7a3c;--gbg:#e6f5ec;
+  --r:#c0392b;--rbg:#fde8e6;
+  --y:#b45309;--ybg:#fef3c7;
+  --bd:#d0d9f5;--bg:#f0f4ff;--wh:#fff;
+  --t:#1a1a2e;--t2:#4a4a6a;--t3:#8888aa;
+  --sh:0 2px 8px rgba(26,63,168,.1);--sh2:0 8px 32px rgba(26,63,168,.18);
+  --ind:#FF6200;
+}
+.page{display:none}.page.active{display:block}
+/* TOPBAR */
+#topbar{background:var(--b);height:60px;display:flex;align-items:center;padding:0 14px;gap:8px;position:sticky;top:0;z-index:500;box-shadow:0 2px 12px rgba(26,63,168,.3);overflow:visible}
+.brand{display:flex;align-items:center;gap:9px;cursor:pointer;flex-shrink:0;min-width:0}
+.brand-logo{width:38px;height:38px;background:#fff;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 2px 8px rgba(0,0,0,.2);flex-shrink:0}
+.brand-title{font-size:14px;font-weight:700;color:#fff;font-family:'Baloo 2',sans-serif;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand-sub{font-size:9px;color:rgba(255,255,255,.7);font-weight:500;white-space:nowrap}
+.tgap{flex:1;min-width:4px}
+.tnav{display:flex;align-items:center;gap:6px;flex-shrink:0}
+.tbtn{padding:6px 13px;border-radius:7px;border:1.5px solid rgba(255,255,255,.35);background:transparent;color:#fff;cursor:pointer;font-size:12px;font-weight:700;transition:.15s;font-family:'Noto Sans',sans-serif;white-space:nowrap}
+.tbtn:hover{background:rgba(255,255,255,.15)}
+.tbtn.grn{background:#fff;color:var(--b);border-color:#fff}
+.tbtn.grn:hover{background:#e8eeff}
+/* USER MENU DROPDOWN */
+.user-menu{position:relative;flex-shrink:0}
+.user-avatar{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.2);border:2px solid rgba(255,255,255,.5);color:#fff;font-size:14px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:'Baloo 2',sans-serif;transition:.15s}
+.user-avatar:hover{background:rgba(255,255,255,.3)}
+.user-dropdown{display:none;position:fixed;top:66px;right:12px;background:#fff;border-radius:12px;box-shadow:0 12px 40px rgba(26,63,168,.35);min-width:200px;z-index:9000;border:1.5px solid var(--bd);overflow:hidden;animation:slideUp .15s ease}
+.user-dropdown.open{display:block}
+.ud-header{padding:12px 14px;background:var(--bbg);border-bottom:1px solid var(--bd)}
+.ud-name{font-size:13px;font-weight:800;color:var(--b);font-family:'Baloo 2',sans-serif}
+.ud-role{font-size:10px;color:var(--t3);font-weight:600}
+.ud-item{display:flex;align-items:center;gap:9px;padding:11px 14px;font-size:13px;font-weight:700;color:var(--t);cursor:pointer;border:none;background:none;width:100%;text-align:left;font-family:'Noto Sans',sans-serif;transition:.12s}
+.ud-item:hover{background:var(--bg);color:var(--b)}
+.ud-item.red{color:var(--r)}.ud-item.red:hover{background:var(--rbg)}
+.ud-divider{height:1px;background:var(--bd);margin:2px 0}
+/* TRICOLOR STRIP */
+.tricolor{height:5px;background:linear-gradient(to right,var(--ind) 33.3%,#fff 33.3% 66.6%,#046A38 66.6%)}
+/* UTILS */
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:8px;border:1.5px solid var(--bd);background:var(--wh);color:var(--t);cursor:pointer;font-size:13px;font-weight:700;transition:.15s;font-family:'Noto Sans',sans-serif}
+.btn:hover{background:var(--bg)}
+.btn.p{background:var(--b);color:#fff;border-color:var(--b)}.btn.p:hover{background:var(--b2)}
+.btn.o{background:var(--o);color:#fff;border-color:var(--o)}
+.btn.d{background:var(--rbg);color:var(--r);border-color:#fca5a5}
+.btn.sm{padding:5px 11px;font-size:12px}.btn.full{width:100%;justify-content:center}
+.fg{margin-bottom:14px}
+.lbl{display:block;font-size:11px;font-weight:700;color:var(--t2);margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px}
+.inp,.sel,.txa{width:100%;padding:10px 13px;border:1.5px solid var(--bd);border-radius:8px;background:var(--wh);color:var(--t);font-size:14px;font-family:'Noto Sans',sans-serif;transition:.15s}
+.inp:focus,.sel:focus,.txa:focus{outline:none;border-color:var(--b);box-shadow:0 0 0 3px rgba(26,63,168,.12)}
+.txa{resize:vertical;min-height:80px}
+.r2{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.r3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:13px}
+.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700}
+.bgn{background:var(--gbg);color:var(--g)}.brd{background:var(--rbg);color:var(--r)}
+.bamb{background:var(--ybg);color:var(--y)}.bbl{background:var(--bbg);color:var(--b)}.bgr{background:#f0f0f5;color:#666}
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead th{padding:10px 12px;text-align:left;background:#f0f4ff;color:var(--t2);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid var(--bd)}
+tbody td{padding:11px 12px;border-bottom:1px solid #eef1fb;vertical-align:middle}
+tbody tr:hover{background:#f8f9ff}
+tbody tr:last-child td{border-bottom:none}
+.ac{display:flex;gap:5px;flex-wrap:wrap;align-items:center}
+.card{background:var(--wh);border:1.5px solid var(--bd);border-radius:12px;box-shadow:var(--sh)}
+.cp{padding:18px}
+/* MODALS */
+.mbg{display:none;position:fixed;inset:0;background:rgba(10,20,60,.55);z-index:600;align-items:center;justify-content:center;padding:12px}
+.mbg.open{display:flex}
+.mbox{background:var(--wh);border-radius:14px;width:100%;max-width:540px;max-height:93vh;overflow-y:auto;box-shadow:var(--sh2);animation:slideUp .22s ease}
+@keyframes slideUp{from{transform:translateY(18px);opacity:0}to{transform:translateY(0);opacity:1}}
+.mhead{display:flex;justify-content:space-between;align-items:center;padding:15px 20px;border-bottom:1.5px solid var(--bd)}
+.mhead h3{font-size:17px;font-weight:800;font-family:'Baloo 2',sans-serif}
+.mclose{background:none;border:none;font-size:22px;cursor:pointer;color:var(--t3);padding:0 4px}.mclose:hover{color:var(--t)}
+.mbody{padding:20px}
+.mfoot{padding:12px 20px 18px;border-top:1.5px solid var(--bd);display:flex;gap:8px;justify-content:flex-end}
+/* TOASTS */
+#toasts{position:fixed;bottom:18px;right:18px;z-index:9999;display:flex;flex-direction:column;gap:8px}
+.toast{padding:11px 18px;border-radius:9px;font-size:13px;font-weight:700;color:#fff;min-width:220px;animation:slideUp .2s ease;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+.toast.s{background:var(--g)}.toast.e{background:var(--r)}.toast.i{background:var(--b)}.toast.w{background:var(--o)}
+/* HERO */
+.hero{background:linear-gradient(135deg,#0d2b7a 0%,#1a3fa8 50%,#1565c0 100%);padding:44px 16px 36px;color:#fff;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.hero-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;position:relative}
+.hero-badge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:20px;padding:4px 12px;font-size:11px;font-weight:700;margin-bottom:12px;display:inline-block}
+.hero h1{font-size:30px;font-weight:800;font-family:'Baloo 2',sans-serif;margin-bottom:6px;line-height:1.2}
+.hero p{font-size:14px;opacity:.88;margin-bottom:22px;max-width:500px}
+.hbtn{padding:11px 24px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;border:2px solid #fff;font-family:'Noto Sans',sans-serif;transition:.15s}
+.hbtn.wh{background:#fff;color:var(--b)}.hbtn.wh:hover{background:#e8eeff}
+.hbtn.ol{background:transparent;color:#fff}.hbtn.ol:hover{background:rgba(255,255,255,.15)}
+.hero-btns{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.hero-stats{display:flex;gap:28px}
+.hs{text-align:center}.hs strong{display:block;font-size:26px;font-weight:800;font-family:'Baloo 2',sans-serif}.hs span{font-size:11px;opacity:.8}
+/* SERVICES SECTION */
+.services-sec{padding:28px 0}
+.sec-title{font-size:20px;font-weight:800;font-family:'Baloo 2',sans-serif;color:var(--t);margin-bottom:4px}
+.sec-sub{font-size:13px;color:var(--t3);margin-bottom:20px}
+.srow{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap}
+.srow input{flex:1;min-width:180px;padding:10px 14px;border:1.5px solid var(--bd);border-radius:8px;font-size:14px;font-family:'Noto Sans',sans-serif;background:var(--wh);box-shadow:var(--sh)}
+.srow input:focus{outline:none;border-color:var(--b)}
+.srow input::placeholder{color:var(--t3)}
+.cats{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:20px}
+.cpill{padding:6px 15px;border-radius:20px;font-size:12px;font-weight:700;border:1.5px solid var(--bd);background:var(--wh);color:var(--t2);cursor:pointer;transition:.15s}
+.cpill.on,.cpill:hover{background:var(--b);color:#fff;border-color:var(--b)}
+/* SERVICE CARDS */
+.sgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+.sc-card{background:var(--wh);border:1.5px solid var(--bd);border-radius:14px;overflow:hidden;cursor:pointer;transition:.22s;display:flex;flex-direction:column;position:relative}
+.sc-card:hover{box-shadow:var(--sh2);transform:translateY(-3px);border-color:var(--b)}
+.sc-card-top{padding:20px 16px 14px;display:flex;align-items:flex-start;gap:13px}
+.sc-icon{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0}
+.sc-info{flex:1}
+.sc-name{font-size:14px;font-weight:800;font-family:'Baloo 2',sans-serif;line-height:1.3;margin-bottom:3px;color:var(--t)}
+.sc-cat{font-size:10px;color:var(--t3);font-weight:600;text-transform:uppercase;letter-spacing:.4px}
+.sc-desc{font-size:12px;color:var(--t2);line-height:1.6;padding:0 16px 12px}
+.sc-foot{display:flex;justify-content:space-between;align-items:center;padding:10px 16px 14px;border-top:1px solid #eef1fb;margin-top:auto}
+.sc-fee{font-size:14px;font-weight:800;color:var(--b)}
+.sc-fee span{font-size:10px;font-weight:600;color:var(--t3)}
+.apply-btn{background:var(--b);color:#fff;border:none;border-radius:7px;padding:7px 16px;font-size:12px;font-weight:800;cursor:pointer;font-family:'Noto Sans',sans-serif;transition:.15s}
+.apply-btn:hover{background:var(--b2)}
+.sc-badge{position:absolute;top:12px;right:12px}
+/* AUTH */
+.auth-pg{min-height:calc(100vh - 65px);display:flex;align-items:center;justify-content:center;padding:20px;background:var(--bg)}
+.auth-wrap{width:100%;max-width:440px}
+.auth-tabs{display:flex;gap:3px;background:#dde3f5;border-radius:10px;padding:4px;margin-bottom:20px}
+.atab{flex:1;padding:9px;text-align:center;font-size:12px;font-weight:700;border:none;background:none;border-radius:8px;cursor:pointer;color:var(--t2);font-family:'Noto Sans',sans-serif;transition:.15s}
+.atab.on{background:var(--wh);color:var(--b);box-shadow:var(--sh)}
+.acard{background:var(--wh);border:1.5px solid var(--bd);border-radius:14px;padding:28px;box-shadow:var(--sh2)}
+.acard h2{font-size:22px;font-weight:800;margin-bottom:3px;font-family:'Baloo 2',sans-serif}
+.acard .asub{color:var(--t3);font-size:12px;margin-bottom:22px}
+.demo-box{background:#eef2ff;border:1.5px solid #c0ccee;border-radius:9px;padding:13px;font-size:11px;color:var(--t2);margin-top:16px;line-height:2}
+.demo-box strong{display:block;color:var(--b);margin-bottom:3px;font-size:12px}
+/* MY APPLICATIONS */
+.pp{padding:26px 0}
+.app-card{background:var(--wh);border:1.5px solid var(--bd);border-radius:12px;padding:16px;margin-bottom:12px;box-shadow:var(--sh)}
+.app-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid #eef1fb}
+.app-id{font-size:13px;font-weight:800;color:var(--b)}.app-meta{font-size:11px;color:var(--t3);margin-top:2px}
+.app-detail{background:#f5f7ff;border-radius:8px;padding:11px;margin-top:8px}
+.app-row{display:flex;justify-content:space-between;font-size:12px;color:var(--t2);padding:2px 0}
+/* ADMIN DASHBOARD */
+.dash-layout{display:flex;min-height:calc(100vh - 65px)}
+.sidebar{width:215px;flex-shrink:0;background:var(--wh);border-right:1.5px solid var(--bd);padding:14px 10px;display:flex;flex-direction:column;position:sticky;top:60px;height:calc(100vh - 65px);overflow-y:auto}
+.su{background:var(--bbg);border-radius:10px;padding:13px;margin-bottom:16px;border:1px solid var(--bd)}
+.su .sn{font-size:13px;font-weight:800;color:var(--b);font-family:'Baloo 2',sans-serif}.su .sr2{font-size:10px;color:var(--t3);margin-top:2px}
+.snav{list-style:none}.snav li{margin-bottom:2px}
+.nb{display:flex;align-items:center;gap:8px;padding:9px 12px;border-radius:8px;color:var(--t2);font-size:12px;font-weight:700;cursor:pointer;width:100%;border:none;background:none;transition:.15s;text-align:left;font-family:'Noto Sans',sans-serif}
+.nb:hover{background:var(--bg)}.nb.on{background:var(--bbg);color:var(--b)}.nb .ni{font-size:15px}
+.sf{margin-top:auto;padding-top:12px;border-top:1.5px solid var(--bd)}
+.dmain{flex:1;padding:24px;background:var(--bg);overflow-y:auto}
+.ds{display:none}.ds.on{display:block}
+.dh{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;flex-wrap:wrap;gap:10px}
+.dh h1{font-size:22px;font-weight:800;font-family:'Baloo 2',sans-serif}.dh p{font-size:12px;color:var(--t3);margin-top:3px}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:12px;margin-bottom:22px}
+.stat-c{background:var(--wh);border:1.5px solid var(--bd);border-radius:12px;padding:16px;box-shadow:var(--sh)}
+.stat-c .si{font-size:24px;margin-bottom:8px}.stat-c .sv{font-size:26px;font-weight:900;font-family:'Baloo 2',sans-serif}
+.stat-c .sv.g{color:var(--g)}.stat-c .sv.a{color:var(--o)}.stat-c .sv.b{color:var(--b)}.stat-c .sv.r{color:var(--r)}
+.stat-c .sl{font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:.3px;margin-top:3px}
+.sbtns{display:flex;gap:5px;flex-wrap:wrap;margin-top:10px;align-items:center}
+.sbtn{padding:4px 11px;border-radius:6px;font-size:10px;font-weight:800;border:1.5px solid var(--bd);background:#f5f7ff;color:var(--t2);cursor:pointer;font-family:'Noto Sans',sans-serif;transition:.15s}
+.sbtn:hover{border-color:var(--b);color:var(--b)}.sbtn.on{background:var(--b);color:#fff;border-color:var(--b)}
+/* NOTIFICATION BANNER */
+.notif-banner{background:linear-gradient(135deg,#0d2b7a,#1a3fa8);color:#fff;border-radius:12px;padding:15px 18px;margin-bottom:18px;display:flex;align-items:flex-start;gap:13px}
+.notif-banner .ni{font-size:24px;flex-shrink:0;margin-top:2px}
+.notif-banner h4{font-size:13px;font-weight:800;margin-bottom:4px;font-family:'Baloo 2',sans-serif}
+.notif-banner p{font-size:11px;opacity:.9;line-height:1.7}
+/* MOBILE ADMIN TABS */
+.admin-mob-tabs{display:none;background:var(--wh);border-bottom:2px solid var(--b);overflow-x:auto;white-space:nowrap}
+.amt{display:inline-flex;align-items:center;gap:5px;padding:12px 16px;font-size:12px;font-weight:700;color:var(--t2);border:none;background:none;cursor:pointer;font-family:'Noto Sans',sans-serif;border-bottom:3px solid transparent;transition:.15s}
+.amt.on{color:var(--b);border-bottom-color:var(--b)}
+/* EMPTY */
+.empty{text-align:center;padding:48px 16px;color:var(--t3)}.empty .ei{font-size:48px;margin-bottom:12px}.empty p{font-size:13px}
+/* OUT / FREE */
+.free-badge{background:var(--gbg);color:var(--g);font-size:10px;font-weight:800;padding:2px 8px;border-radius:4px}
+/* DOCUMENT REQUIRED BOX */
+.doc-box{background:#f0f4ff;border:1.5px solid var(--bd);border-radius:10px;padding:13px;margin-bottom:14px}
+.doc-box h4{font-size:12px;font-weight:800;color:var(--b);margin-bottom:8px}
+.doc-list{list-style:none;display:flex;flex-direction:column;gap:4px}
+.doc-list li{font-size:12px;color:var(--t2);display:flex;align-items:center;gap:7px}
+.doc-list li::before{content:'✓';color:var(--g);font-weight:900;font-size:11px}
+/* STATUS TIMELINE */
+.timeline{display:flex;gap:0;margin:12px 0}
+.tl-step{flex:1;text-align:center;position:relative}
+.tl-step::before{content:'';position:absolute;top:12px;left:50%;right:-50%;height:2px;background:var(--bd);z-index:0}
+.tl-step:last-child::before{display:none}
+.tl-dot{width:24px;height:24px;border-radius:50%;background:var(--bd);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#fff;margin:0 auto 5px;position:relative;z-index:1}
+.tl-dot.done{background:var(--g)}.tl-dot.active{background:var(--b)}.tl-dot.pending{background:var(--bd)}
+.tl-label{font-size:9px;color:var(--t3);font-weight:700}
+@media(max-width:768px){
+  .sidebar{display:none}
+  .admin-mob-tabs{display:block}
+  .hero-stats{display:none}
+  .hero h1{font-size:22px}
+  .r2,.r3{grid-template-columns:1fr}
+  .sgrid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
+  .dh{flex-direction:column}
+  .dmain{padding:14px}
+}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+
+<div class="tricolor"></div>
+
+<!-- TOPBAR -->
+<header id="topbar">
+  <div class="brand" onclick="gp('home')">
+    <div class="brand-logo">🏛️</div>
+    <div>
+      <div class="brand-title">Monu CSC Centre</div>
+      <div class="brand-sub">Common Service Centre • Meerut, UP</div>
+    </div>
+  </div>
+  <div class="tgap"></div>
+  <div class="tnav">
+    <!-- Logged OUT -->
+    <button class="tbtn" id="tn-login" onclick="gp('auth')">🔐 Login</button>
+    <!-- Logged IN — user menu -->
+    <div class="user-menu" id="user-menu" style="display:none">
+      <div class="user-avatar" id="user-avatar" onclick="toggleUserMenu(event)">U</div>
+      <div class="user-dropdown" id="user-dropdown" onclick="event.stopPropagation()">
+        <div class="ud-header">
+          <div class="ud-name" id="ud-name">User</div>
+          <div class="ud-role" id="ud-role">Customer</div>
+        </div>
+        <button class="ud-item" id="ud-apps" style="display:none" onclick="event.stopPropagation();closeUserMenu();gp('myapps')">📋 My Applications</button>
+        <button class="ud-item" id="ud-adm" style="display:none" onclick="event.stopPropagation();closeUserMenu();gp('admin')">⚙️ Admin Panel</button>
+        <div class="ud-divider"></div>
+        <button class="ud-item red" onclick="event.stopPropagation();closeUserMenu();doLogout()">🚪 Logout</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ═══ HOME PAGE ═══ -->
+<div class="page active" id="page-home">
+  <div class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge">🇮🇳 Government Authorised CSC Centre</div>
+        <h1>Monu CSC Centre</h1>
+        <p>Sarkari seva ghar baithe — Aadhar, PAN, e-Shram, aur 50+ services ek jagah par</p>
+        <div class="hero-btns">
+          <button class="hbtn wh" onclick="document.getElementById('svc-search').focus()">🔍 Search Services</button>
+          <button class="hbtn ol" onclick="gp('auth')">Apply Now →</button>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="hs"><strong id="hs-svc">0</strong><span>Services</span></div>
+        <div class="hs"><strong id="hs-app">0</strong><span>Applications</span></div>
+        <div class="hs"><strong>✅</strong><span>Trusted</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="services-sec">
+    <div class="wrap">
+      <div class="sec-title">🗂️ Available Services</div>
+      <div class="sec-sub">Kisi bhi service par click karke apply karein</div>
+      <div class="srow">
+        <input type="text" id="svc-search" placeholder="🔍 Search service — Aadhar, PAN, e-Shram, Ration Card…" oninput="rHome()">
+      </div>
+      <div class="cats" id="cats-row"></div>
+      <div class="sgrid" id="svc-grid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SERVICE DETAIL PAGE ═══ -->
+<div class="page" id="page-detail">
+  <div class="wrap" style="padding-top:20px;padding-bottom:32px">
+    <button class="btn" onclick="gp('home')" style="margin-bottom:16px">← Back to Services</button>
+    <div style="display:grid;grid-template-columns:1fr 340px;gap:24px;align-items:start" id="detail-grid">
+      <div>
+        <div id="det-icon" style="font-size:48px;margin-bottom:10px"></div>
+        <div id="det-badge" style="margin-bottom:10px"></div>
+        <h1 id="det-name" style="font-size:26px;font-weight:800;font-family:'Baloo 2',sans-serif;margin-bottom:6px"></h1>
+        <div id="det-cat" style="font-size:11px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px"></div>
+        <p id="det-desc" style="font-size:13px;color:var(--t2);line-height:1.8;margin-bottom:18px"></p>
+        <div class="doc-box" id="det-docs"></div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <div style="background:#f0f4ff;border-radius:9px;padding:11px 16px;flex:1;min-width:120px">
+            <div style="font-size:10px;font-weight:700;color:var(--t3);text-transform:uppercase;margin-bottom:4px">Service Fee</div>
+            <div id="det-fee" style="font-size:20px;font-weight:900;font-family:'Baloo 2',sans-serif;color:var(--b)"></div>
+          </div>
+          <div style="background:#f0f4ff;border-radius:9px;padding:11px 16px;flex:1;min-width:120px">
+            <div style="font-size:10px;font-weight:700;color:var(--t3);text-transform:uppercase;margin-bottom:4px">Processing Time</div>
+            <div id="det-time" style="font-size:20px;font-weight:900;font-family:'Baloo 2',sans-serif;color:var(--g)"></div>
+          </div>
+        </div>
+      </div>
+      <div class="card cp" style="position:sticky;top:78px">
+        <h3 style="font-size:16px;font-weight:800;font-family:'Baloo 2',sans-serif;margin-bottom:14px;color:var(--b)">📝 Apply for this Service</h3>
+        <button class="btn p full" style="font-size:14px;padding:13px" onclick="openApply()">✅ Apply Now</button>
+        <div style="margin-top:12px;font-size:11px;color:var(--t3);text-align:center;line-height:1.7">
+          ✔ Verified CSC Centre &nbsp;|&nbsp; ✔ Instant Receipt<br>✔ WhatsApp Updates &nbsp;|&nbsp; ✔ 100% Secure
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ AUTH PAGE ═══ -->
+<div class="page" id="page-auth">
+  <div class="auth-pg">
+    <div class="auth-wrap">
+      <div class="auth-tabs">
+        <button class="atab on" id="tab-login" onclick="setTab('login')">Login</button>
+        <button class="atab" id="tab-signup" onclick="setTab('signup')">Register</button>
+      </div>
+      <div class="acard">
+        <div id="form-login">
+          <h2>Welcome Back 👋</h2>
+          <div class="asub">Login to track your applications</div>
+          <div class="fg"><label class="lbl">Mobile / Email</label><input type="text" id="li-e" class="inp" placeholder="mobile number or email"></div>
+          <div class="fg"><label class="lbl">Password</label><input type="password" id="li-p" class="inp" placeholder="Password" onkeydown="if(event.key==='Enter')doLogin()"></div>
+          <button class="btn p full" onclick="doLogin()">Login →</button>
+          <div class="demo-box">
+            <strong>🔑 Demo Login Credentials</strong>
+
+            
+          </div>
+        </div>
+        <div id="form-signup" style="display:none">
+          <h2>Create Account</h2>
+          <div class="asub">Register to apply for services</div>
+          <div class="r2">
+            <div class="fg"><label class="lbl">First Name *</label><input type="text" id="sf" class="inp" placeholder="Ramesh"></div>
+            <div class="fg"><label class="lbl">Last Name</label><input type="text" id="sl" class="inp" placeholder="Kumar"></div>
+          </div>
+          <div class="fg"><label class="lbl">Mobile Number *</label><input type="text" id="sm" class="inp" placeholder="9876543210"></div>
+          <div class="fg"><label class="lbl">Email</label><input type="email" id="se" class="inp" placeholder="your@email.com"></div>
+          <div class="fg"><label class="lbl">Password *</label><input type="password" id="sp" class="inp" placeholder="Min 6 characters"></div>
+          <button class="btn p full" onclick="doSignup()">Create Account →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ MY APPLICATIONS PAGE ═══ -->
+<div class="page" id="page-myapps">
+  <div class="pp">
+    <div class="wrap">
+      <div class="dh">
+        <div><h1>📋 My Applications</h1><p>Track all your service applications</p></div>
+        <button class="btn" onclick="gp('home')">+ Apply New Service</button>
+      </div>
+      <div id="myapps-wrap"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ ADMIN PAGE ═══ -->
+<div class="page" id="page-admin">
+  <div class="admin-mob-tabs">
+    <button class="amt on" id="amt-ov" onclick="showAS('ov')">📊 Overview</button>
+    <button class="amt" id="amt-sv" onclick="showAS('sv')">🗂️ Services</button>
+    <button class="amt" id="amt-ap" onclick="showAS('ap')">📋 Applications</button>
+    <button class="amt" id="amt-us" onclick="showAS('us')">👥 Users</button>
+    <button class="amt" id="amt-se" onclick="showAS('se')">⚙️ Settings</button>
+  </div>
+  <div class="dash-layout">
+    <nav class="sidebar">
+      <div class="su">
+        <div class="sn">🔐 Admin Panel</div>
+        <div class="sr2">Monu CSC Centre</div>
+      </div>
+      <ul class="snav">
+        <li><button class="nb on" id="an-ov" onclick="showAS('ov')"><span class="ni">📊</span>Overview</button></li>
+        <li><button class="nb" id="an-sv" onclick="showAS('sv')"><span class="ni">🗂️</span>Services</button></li>
+        <li><button class="nb" id="an-ap" onclick="showAS('ap')"><span class="ni">📋</span>Applications</button></li>
+        <li><button class="nb" id="an-us" onclick="showAS('us')"><span class="ni">👥</span>Users</button></li>
+        <li><button class="nb" id="an-se" onclick="showAS('se')"><span class="ni">⚙️</span>Settings</button></li>
+      </ul>
+      <div class="sf">
+        <button class="nb" onclick="gp('home')"><span class="ni">🏛️</span>View Centre</button>
+        <button class="nb" onclick="doLogout()"><span class="ni">🚪</span>Logout</button>
+      </div>
+    </nav>
+    <main class="dmain">
+
+      <!-- OVERVIEW -->
+      <div class="ds on" id="ads-ov">
+        <div class="dh">
+          <div><h1>Dashboard</h1><p>Welcome back, Admin 👋</p></div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button class="btn" onclick="showAS('sv')">🗂️ Services</button>
+            <button class="btn" onclick="showAS('us')">👥 Users</button>
+            <button class="btn p" onclick="openSM()">+ Add Service</button>
+          </div>
+        </div>
+        <div class="stat-grid" id="a-stats"></div>
+        <div class="card cp">
+          <div style="font-size:14px;font-weight:800;margin-bottom:14px;font-family:'Baloo 2',sans-serif">🕐 Recent Applications</div>
+          <div id="a-rec"></div>
+        </div>
+      </div>
+
+      <!-- SERVICES MANAGEMENT -->
+      <div class="ds" id="ads-sv">
+        <div class="dh">
+          <div><h1>🗂️ Services</h1><p>Add, edit and manage all services</p></div>
+          <button class="btn p" onclick="openSM()">+ Add Service</button>
+        </div>
+        <div class="card"><div class="tw">
+          <table>
+            <thead><tr><th>Icon</th><th>Service Name</th><th>Category</th><th>Fee</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody id="a-svc-body"></tbody>
+          </table>
+        </div></div>
+      </div>
+
+      <!-- APPLICATIONS -->
+      <div class="ds" id="ads-ap">
+        <div class="dh"><div><h1>📋 All Applications</h1><p>Manage and update application status</p></div></div>
+        <div id="a-app-wrap"></div>
+      </div>
+
+      <!-- USERS -->
+      <div class="ds" id="ads-us">
+        <div class="dh">
+          <div><h1>👥 Users</h1><p>Registered users manage karein</p></div>
+          <button class="btn p" onclick="openUM()">+ Add User</button>
+        </div>
+        <!-- User Stats -->
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-bottom:18px" id="u-stats"></div>
+        <!-- Users Table -->
+        <div class="card"><div class="tw">
+          <table>
+            <thead><tr><th>Name</th><th>Mobile</th><th>Role</th><th>Applications</th><th>Joined</th><th>Actions</th></tr></thead>
+            <tbody id="a-usr-body"></tbody>
+          </table>
+        </div></div>
+      </div>
+
+      <!-- SETTINGS -->
+      <div class="ds" id="ads-se">
+        <div class="dh"><div><h1>⚙️ Settings</h1></div></div>
+        <div class="notif-banner">
+          <div class="ni">🔔</div>
+          <div>
+            <h4>Application Notifications Active</h4>
+            <p>📧 Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5b33333a29322833302e363a296c6b6a6c6f6c69696d6f1b3c363a323775383436">[email&#160;protected]</a><br>📱 WhatsApp / SMS: +91 9557656030</p>
+          </div>
+        </div>
+        <div class="card cp" style="max-width:500px">
+          <div class="fg"><label class="lbl">Centre Name</label><input type="text" id="a-pn" class="inp" placeholder="Centre ka naam likhein"></div>
+          <div class="fg"><label class="lbl">Centre Address</label><input type="text" id="a-addr" class="inp" placeholder="Pura address likhein"></div>
+          <div class="fg"><label class="lbl">Notification Email</label><input type="email" id="a-ne" class="inp" placeholder="Email address"></div>
+          <div class="fg"><label class="lbl">WhatsApp / SMS Number</label><input type="text" id="a-nw" class="inp" placeholder="10 digit mobile number"></div>
+          <button class="btn p" onclick="saveAS()">💾 Save Settings</button>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- ═══ SERVICE MODAL (ADD/EDIT) ═══ -->
+<div class="mbg" id="m-svc">
+  <div class="mbox">
+    <div class="mhead"><h3 id="sm-ttl">Add Service</h3><button class="mclose" onclick="cm('m-svc')">×</button></div>
+    <div class="mbody">
+      <input type="hidden" id="sm-id">
+      <div class="r2">
+        <div class="fg"><label class="lbl">Service Name *</label><input type="text" id="sm-n" class="inp" placeholder="e.g. Aadhar Card Apply"></div>
+        <div class="fg"><label class="lbl">Category *</label>
+          <select id="sm-c" class="sel">
+            <option>Identity Documents</option>
+            <option>Agriculture</option>
+            <option>Banking & Finance</option>
+            <option>Education</option>
+            <option>Employment</option>
+            <option>Health</option>
+            <option>Housing</option>
+            <option>Insurance</option>
+            <option>Social Welfare</option>
+            <option>Utilities</option>
+            <option>Other Services</option>
+          </select>
+        </div>
+      </div>
+      <div class="fg"><label class="lbl">Description</label><textarea id="sm-d" class="txa" placeholder="Service ke baare mein describe karein…"></textarea></div>
+      <div class="r2">
+        <div class="fg"><label class="lbl">Service Fee (₹)</label><input type="number" id="sm-f" class="inp" placeholder="0 = Free" min="0"></div>
+        <div class="fg"><label class="lbl">Processing Time</label><input type="text" id="sm-t" class="inp" placeholder="e.g. 7-10 Days"></div>
+      </div>
+      <div class="r2">
+        <div class="fg"><label class="lbl">Emoji Icon</label><input type="text" id="sm-e" class="inp" placeholder="🪪" maxlength="4"></div>
+        <div class="fg"><label class="lbl">Icon Color</label><input type="color" id="sm-cl" class="inp" value="#e8eeff" style="padding:5px;height:42px"></div>
+      </div>
+      <div class="fg"><label class="lbl">Documents Required (comma separated)</label><input type="text" id="sm-docs" class="inp" placeholder="Aadhar Card, Passport Photo, Mobile Number"></div>
+      <div class="fg"><label class="lbl">Status</label>
+        <select id="sm-s" class="sel"><option value="active">Active</option><option value="inactive">Inactive</option></select>
+      </div>
+    </div>
+    <div class="mfoot" style="justify-content:space-between;align-items:center">
+      <div style="font-size:11px;color:var(--t3)">⚠️ Save karne par sabko dikhega</div>
+      <div style="display:flex;gap:8px">
+        <button class="btn" onclick="cm('m-svc')">✕ Cancel</button>
+        <button class="btn p" onclick="saveSvc()" style="background:#1a7a3c;border-color:#1a7a3c">💾 Save & Publish</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ USER MODAL (ADD/EDIT) ═══ -->
+<div class="mbg" id="m-user">
+  <div class="mbox" style="max-width:460px">
+    <div class="mhead"><h3 id="um-ttl">Add User</h3><button class="mclose" onclick="cm('m-user')">×</button></div>
+    <div class="mbody">
+      <input type="hidden" id="um-id">
+      <div class="r2">
+        <div class="fg"><label class="lbl">Full Name *</label><input type="text" id="um-n" class="inp" placeholder="Ramesh Kumar"></div>
+        <div class="fg"><label class="lbl">Role *</label>
+          <select id="um-r" class="sel">
+            <option value="customer">👤 Customer</option>
+            <option value="admin">🔐 Admin</option>
+          </select>
+        </div>
+      </div>
+      <div class="r2">
+        <div class="fg"><label class="lbl">Mobile Number *</label><input type="text" id="um-m" class="inp" placeholder="9876543210" maxlength="10"></div>
+        <div class="fg"><label class="lbl">Email</label><input type="email" id="um-e" class="inp" placeholder="user@email.com"></div>
+      </div>
+      <div class="r2">
+        <div class="fg"><label class="lbl" id="um-pw-lbl">Password *</label><input type="password" id="um-p" class="inp" placeholder="Min 6 characters"></div>
+        <div class="fg"><label class="lbl">Address / Village</label><input type="text" id="um-addr" class="inp" placeholder="Ghar ka pata"></div>
+      </div>
+      <div id="um-edit-note" style="display:none;background:#fff8e0;border:1px solid #fcd34d;border-radius:8px;padding:10px 13px;font-size:12px;color:#b45309;margin-top:4px">
+        ⚠️ Password khali chhodo agar change nahi karna. Naya password likhoge toh change ho jayega.
+      </div>
+    </div>
+    <div class="mfoot">
+      <button class="btn" onclick="cm('m-user')">✕ Cancel</button>
+      <button class="btn p" onclick="saveUser()">💾 Save User</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ USER VIEW MODAL ═══ -->
+<div class="mbg" id="m-userdetail">
+  <div class="mbox" style="max-width:420px">
+    <div class="mhead"><h3>👤 User Details</h3><button class="mclose" onclick="cm('m-userdetail')">×</button></div>
+    <div class="mbody" id="ud-body"></div>
+    <div class="mfoot">
+      <button class="btn" onclick="cm('m-userdetail')">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ APPLY MODAL ═══ -->
+<div class="mbg" id="m-apply">
+  <div class="mbox" style="max-width:500px">
+    <div class="mhead"><h3 id="ap-ttl">Apply for Service</h3><button class="mclose" onclick="cm('m-apply')">×</button></div>
+    <div class="mbody">
+      <div id="ap-svc-info" style="background:#f0f4ff;border-radius:10px;padding:13px;margin-bottom:16px;display:flex;gap:12px;align-items:center"></div>
+      <div class="r2">
+        <div class="fg"><label class="lbl">Full Name *</label><input type="text" id="ap-n" class="inp" placeholder="Applicant ka naam"></div>
+        <div class="fg"><label class="lbl">Father's Name</label><input type="text" id="ap-fn" class="inp" placeholder="Pita ka naam"></div>
+      </div>
+      <div class="r2">
+        <div class="fg"><label class="lbl">Mobile Number *</label><input type="tel" id="ap-ph" class="inp" placeholder="10-digit mobile"></div>
+        <div class="fg"><label class="lbl">Aadhar Number</label><input type="text" id="ap-aa" class="inp" placeholder="12-digit Aadhar"></div>
+      </div>
+      <div class="fg"><label class="lbl">Address *</label><input type="text" id="ap-addr" class="inp" placeholder="Village/Mohalla, District, PIN"></div>
+      <div class="r2">
+        <div class="fg"><label class="lbl">Date of Birth</label><input type="date" id="ap-dob" class="inp"></div>
+        <div class="fg"><label class="lbl">Gender</label>
+          <select id="ap-g" class="sel"><option value="">Select</option><option>Male</option><option>Female</option><option>Other</option></select>
+        </div>
+      </div>
+      <div class="fg"><label class="lbl">Additional Notes</label><textarea id="ap-note" class="txa" placeholder="Koi aur zaruri jaankari…" style="min-height:60px"></textarea></div>
+      <div style="background:#fff8e8;border:1.5px solid #fcd34d;border-radius:9px;padding:11px;font-size:11px;color:var(--y);font-weight:600;margin-top:4px">
+        ⚠️ Kripya sahi jaankari bharein. Documents laana na bhoolein.
+      </div>
+    </div>
+    <div class="mfoot" style="justify-content:space-between;align-items:center">
+      <div id="ap-fee-disp" style="font-size:18px;font-weight:800;color:var(--b)"></div>
+      <div style="display:flex;gap:8px">
+        <button class="btn" onclick="cm('m-apply')">Cancel</button>
+        <button class="btn p" onclick="submitApp()">✅ Submit Application</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SUCCESS MODAL ═══ -->
+<div class="mbg" id="m-ok">
+  <div class="mbox" style="max-width:400px;text-align:center">
+    <div class="mbody" style="padding:32px 26px">
+      <div style="font-size:60px;margin-bottom:14px">✅</div>
+      <h2 style="font-size:22px;font-weight:800;margin-bottom:6px;font-family:'Baloo 2',sans-serif">Application Submitted!</h2>
+      <p id="ok-id" style="color:var(--b);font-size:14px;font-weight:800;margin-bottom:6px"></p>
+      <p style="font-size:12px;color:var(--t2);margin-bottom:14px">Aapka application successfully submit ho gaya. Hum aapko jald hi contact karenge.</p>
+      <div style="background:#e8f5ec;border:1.5px solid #a8d5b5;border-radius:9px;padding:11px 14px;font-size:11px;color:var(--g);font-weight:700;margin-bottom:18px;line-height:1.9">
+        📧 Admin ko email notification bheja gaya<br>
+        📱 WhatsApp par notification bheja gaya
+      </div>
+      <button class="btn full" style="margin-bottom:8px;background:#16a34a;border-color:#16a34a;color:#fff;font-weight:800" onclick="downloadReceipt()">📥 Receipt Download Karo</button>
+      <button class="btn p full" style="margin-bottom:8px" onclick="cm('m-ok');gp('myapps')">📋 Track My Application</button>
+      <button class="btn full" onclick="cm('m-ok');gp('home')">🏛️ Back to Home</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ RECEIPT (hidden, for screenshot) ═══ -->
+<div id="receipt-card" style="position:fixed;left:-9999px;top:0;width:380px;background:#fff;font-family:'Noto Sans',sans-serif;border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.15)">
+  <div style="background:linear-gradient(135deg,#0d2b7a,#1a3fa8);padding:22px 22px 18px;text-align:center;color:#fff">
+    <div style="font-size:28px;margin-bottom:4px">🏛️</div>
+    <div id="rc-centre" style="font-size:16px;font-weight:800;font-family:'Baloo 2',sans-serif;margin-bottom:2px"></div>
+    <div style="font-size:10px;opacity:0.8">Application Receipt</div>
+  </div>
+  <div style="background:#e8f5ec;padding:10px 22px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #d1fae5">
+    <div style="font-size:11px;color:#166534;font-weight:700">✅ Successfully Submitted</div>
+    <div id="rc-id" style="font-size:11px;color:#166534;font-weight:800"></div>
+  </div>
+  <div style="padding:18px 22px">
+    <div style="font-size:10px;font-weight:800;color:#6b7280;letter-spacing:1px;margin-bottom:10px;text-transform:uppercase">📋 Service Details</div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:7px"><span style="font-size:11px;color:#6b7280">Service</span><span id="rc-svc" style="font-size:11px;font-weight:700;color:#111;text-align:right;max-width:200px"></span></div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:7px"><span style="font-size:11px;color:#6b7280">Date</span><span id="rc-date" style="font-size:11px;font-weight:700;color:#111"></span></div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:7px"><span style="font-size:11px;color:#6b7280">Fee Paid</span><span id="rc-fee" style="font-size:12px;font-weight:800;color:#1a3fa8"></span></div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:16px"><span style="font-size:11px;color:#6b7280">Status</span><span style="font-size:11px;font-weight:800;color:#d97706;background:#fef3c7;padding:2px 8px;border-radius:20px">⏳ PENDING</span></div>
+
+    <div style="height:1px;background:#f0f0f0;margin-bottom:14px"></div>
+    <div style="font-size:10px;font-weight:800;color:#6b7280;letter-spacing:1px;margin-bottom:10px;text-transform:uppercase">👤 Applicant Details</div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:7px"><span style="font-size:11px;color:#6b7280">Name</span><span id="rc-name" style="font-size:11px;font-weight:700;color:#111"></span></div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:7px"><span style="font-size:11px;color:#6b7280">Mobile</span><span id="rc-mob" style="font-size:11px;font-weight:700;color:#111"></span></div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:7px"><span style="font-size:11px;color:#6b7280">Address</span><span id="rc-addr" style="font-size:11px;font-weight:700;color:#111;text-align:right;max-width:200px"></span></div>
+  </div>
+  <div style="background:#f8fafc;padding:12px 22px;border-top:1px solid #f0f0f0;text-align:center">
+    <div style="font-size:10px;color:#9ca3af">Yeh receipt save kar lein · Hum jald contact karenge</div>
+    <div id="rc-centre2" style="font-size:10px;color:#1a3fa8;font-weight:700;margin-top:2px"></div>
+  </div>
+</div>
+
+<!-- ═══ NOTIFICATION VIEWER ═══ -->
+<div class="mbg" id="m-notif">
+  <div class="mbox" style="max-width:580px">
+    <div class="mhead"><h3>🔔 Application Notification</h3><button class="mclose" onclick="cm('m-notif')">×</button></div>
+    <div class="mbody" id="notif-body"></div>
+    <div class="mfoot">
+      <button class="btn" onclick="cm('m-notif')">Close</button>
+      <button class="btn p" onclick="resendNotif()">📤 Resend</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ USER MODAL (ADD/EDIT) ═══ -->
+<div class="mbg" id="m-user">
+  <div class="mbox" style="max-width:460px">
+    <div class="mhead"><h3 id="um-ttl">Add User</h3><button class="mclose" onclick="cm('m-user')">×</button></div>
+    <div class="mbody">
+      <input type="hidden" id="um-id">
+      <div class="r2">
+        <div class="fg"><label class="lbl">Full Name *</label><input type="text" id="um-n" class="inp" placeholder="Ramesh Kumar"></div>
+        <div class="fg"><label class="lbl">Role</label>
+          <select id="um-r" class="sel">
+            <option value="customer">👤 Customer</option>
+            <option value="admin">👑 Admin</option>
+          </select>
+        </div>
+      </div>
+      <div class="fg"><label class="lbl">Mobile Number *</label><input type="text" id="um-m" class="inp" placeholder="10-digit mobile number"></div>
+      <div class="fg"><label class="lbl">Email (optional)</label><input type="email" id="um-e" class="inp" placeholder="email@example.com"></div>
+      <div class="fg">
+        <label class="lbl">Password *</label>
+        <div style="position:relative">
+          <input type="text" id="um-p" class="inp" placeholder="Min 6 characters" style="padding-right:90px">
+          <button onclick="genPass()" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);background:var(--b);color:#fff;border:none;border-radius:5px;padding:4px 9px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Noto Sans',sans-serif">🔀 Generate</button>
+        </div>
+        <div style="font-size:10px;color:var(--t3);margin-top:4px">Password strong hona chahiye — letters + numbers use karein</div>
+      </div>
+      <div id="um-info" style="display:none;background:#f0f4ff;border:1.5px solid var(--bd);border-radius:9px;padding:12px;margin-top:4px">
+        <div style="font-size:11px;font-weight:800;color:var(--b);margin-bottom:8px">📋 User Login Details (save kar lein)</div>
+        <div style="font-size:12px;color:var(--t2);line-height:2" id="um-info-text"></div>
+      </div>
+    </div>
+    <div class="mfoot" style="justify-content:space-between;align-items:center">
+      <div style="font-size:11px;color:var(--t3)">Details save kar lein</div>
+      <div style="display:flex;gap:8px">
+        <button class="btn" onclick="cm('m-user')">Cancel</button>
+        <button class="btn p" onclick="saveUser()">💾 Save User</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="toasts"></div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+/* ════════════════════════════════════════
+   DATABASE
+════════════════════════════════════════ */
+const DB = {
+  cfg: {
+    name: 'Monu CSC Centre',
+    addr: 'Near Tehsil, Meerut, UP 250001',
+    notifEmail: 'hharishkumar7017472264@gmail.com',
+    notifPhone: '9557656030'
+  },
+  users: [
+    {id:'u1', name:'Admin', email:'admin@csc.com', mobile:'9999999999', pw:'admin123', role:'admin', joined:'2024-01-01'},
+    {id:'u2', name:'Ramesh Kumar', email:'user@demo.com', mobile:'9876543210', pw:'demo123', role:'customer', joined:'2024-01-15', addr:'42 MG Road, Meerut'},
+  ],
+  services: [
+    {id:'s1', name:'Aadhar Card Apply / Update', cat:'Identity Documents', fee:60, time:'15-20 Days', emoji:'🪪', color:'#e8eeff', status:'active',
+     desc:'Naya Aadhar card banwayein ya purana update karwayein — naam, address, mobile number, photo update. Biometrics aur documents verification hamare centre par hogi.',
+     docs:['Original documents (Birth Certificate / School Certificate)','Passport size photo (2 copies)','Address proof (Bijli Bill / Ration Card)','Mobile number (OTP ke liye)']},
+    {id:'s2', name:'PAN Card Apply / Correction', cat:'Identity Documents', fee:160, time:'7-10 Days', emoji:'🪙', color:'#fff3e8', status:'active',
+     desc:'Income Tax ke liye PAN Card apply karein ya correction karwayein. NSDL/UTIITSL portal se official apply hoga. Online tracking available.',
+     docs:['Aadhar Card (mandatory)','Passport size photo (2 copies)','Date of birth proof','Mobile number linked with Aadhar']},
+    {id:'s3', name:'e-Shram Card Registration', cat:'Employment', fee:0, time:'Same Day', emoji:'👷', color:'#e6f5ec', status:'active',
+     desc:'Asangathit kshetra ke mazdooron ke liye free e-Shram card. Accident insurance, pension aur sarkar yojanaon ka labh milega.',
+     docs:['Aadhar Card','Mobile number linked with Aadhar','Bank account details','Occupation details']},
+    {id:'s4', name:'Ration Card Apply / Update', cat:'Social Welfare', fee:30, time:'30 Days', emoji:'🍚', color:'#fff0f0', status:'active',
+     desc:'Naya ration card banwayein ya purane mein naam add/remove karwayein. APL/BPL/AAY category ke liye apply karein.',
+     docs:['Parivar ke sabhi sadasy ka Aadhar','Ghar ke malik ka proof','Income certificate','Passport size photos']},
+    {id:'s5', name:'Ayushman Bharat Card', cat:'Health', fee:30, time:'Same Day', emoji:'🏥', color:'#fdf0ff', status:'active',
+     desc:'5 lakh tak free hospital treatment ke liye Ayushman Bharat card banwayein. Iska labh BPL aur targeted families ko milta hai.',
+     docs:['Aadhar Card','Ration Card','Mobile number','Bank passbook (optional)']},
+    {id:'s6', name:'Kisan Credit Card (KCC)', cat:'Agriculture', fee:0, time:'15-20 Days', emoji:'🌾', color:'#f0fff4', status:'active',
+     desc:'Kisano ke liye KCC loan apply karein. Bank ke through kheti ke liye loan milega — seeds, fertilizer, equipment ke liye.',
+     docs:['Aadhar Card','Land documents (Khasra/Khatauni)','Bank account passbook','Passport size photo']},
+    {id:'s7', name:'Driving Licence Apply / Renew', cat:'Identity Documents', fee:200, time:'30-45 Days', emoji:'🚗', color:'#e8f4ff', status:'active',
+     desc:'Naya driving licence banwayein ya purana renew karwayein. Learner licence se permanent licence tak complete process.',
+     docs:['Aadhar Card','Passport size photo (3 copies)','Age proof','Address proof','Medical certificate (Form 1-A)']},
+    {id:'s8', name:'Income Certificate', cat:'Social Welfare', fee:50, time:'7-10 Days', emoji:'📄', color:'#fffde8', status:'active',
+     desc:'Sarkar ki yojanaon, scholarships aur school admissions ke liye income certificate SDM/Tehsildar se banwayein.',
+     docs:['Aadhar Card','Ration Card','Self-declaration form','Any income proof']},
+    {id:'s9', name:'Jati Praman Patra (Caste Certificate)', cat:'Social Welfare', fee:50, time:'7-10 Days', emoji:'📜', color:'#f5f0ff', status:'active',
+     desc:'SC/ST/OBC certificate SDM office se banwayein. Job applications, admissions aur reservation ke liye zaroori.',
+     docs:['Aadhar Card','Ration Card','Old caste certificate (if available)','Affidavit']},
+    {id:'s10', name:'PM Awas Yojana Registration', cat:'Housing', fee:0, time:'30-60 Days', emoji:'🏠', color:'#e8fff0', status:'active',
+     desc:'Pradhan Mantri Awas Yojana mein free/subsidized housing ke liye apply karein — Gramin aur Shahari dono ke liye.',
+     docs:['Aadhar Card','BPL / Income certificate','Bank account details','Current housing status proof']},
+    {id:'s11', name:'Student Scholarship Apply', cat:'Education', fee:0, time:'15-20 Days', emoji:'🎓', color:'#fff8e0', status:'active',
+     desc:'UP government ki pre-matric, post-matric scholarships aur central scholarships ke liye online apply. SC/ST/OBC/Minority.',
+     docs:['Aadhar Card','School/College ID and fee receipt','Bank account (student ka)','Cast certificate','Previous year marksheet']},
+    {id:'s12', name:'Bijli Bill Payment / Connection', cat:'Utilities', fee:20, time:'Same Day', emoji:'⚡', color:'#fffff0', status:'active',
+     desc:'Bijli ka bill pay karein ya naya connection apply karein. UPPCL ke liye complaint bhi darj karein.',
+     docs:['Previous bill (for payment)','Aadhar Card (for new connection)','Property papers (for new connection)']},
+    {id:'s13', name:'PM Kisan Samman Nidhi', cat:'Agriculture', fee:0, time:'1-2 Months', emoji:'🌱', color:'#e8f8e8', status:'active',
+     desc:'Kisano ke liye ₹6000 pravarsh (3 installments mein) PM Kisan yojana mein registration ya correction karwayein.',
+     docs:['Aadhar Card','Bank account details (IFSC code ke saath)','Land documents (Khasra number)','Mobile number']},
+    {id:'s14', name:'Passport Application Assistance', cat:'Identity Documents', fee:300, time:'30-45 Days', emoji:'🛂', color:'#e8f0ff', status:'active',
+     desc:'Passport apply karne mein complete guidance aur form fill karne mein help. Tatkal aur normal dono options available.',
+     docs:['Aadhar Card','10th marksheet (DOB proof)','Address proof','Passport size photos (white background)','Police verification documents']},
+    {id:'s15', name:'Labour Card / Shramik Card', cat:'Employment', fee:30, time:'7-15 Days', emoji:'🔨', color:'#fff5e8', status:'active',
+     desc:'Building aur construction workers ke liye Labour Card banwayein. Scholarship, housing, medical benefits milenge.',
+     docs:['Aadhar Card','Kaam ka proof (employer letter ya affidavit)','Passport size photo','Bank account details']},
+  ],
+  applications: [
+    {id:'APP-001', uid:'u2', svcId:'s1', svcName:'Aadhar Card Apply / Update', name:'Ramesh Kumar', mobile:'9876543210', addr:'42 Main Road, Meerut UP', status:'completed', fee:50, date:'2024-03-01', _notifSent:true}
+  ],
+  me: null,
+  _curSvcId: null,
+  _curNotifId: null,
+  _csvRows: [],
+  _version: 2
+};
+
+/* ════════════════════════════════════════
+   HELPERS
+════════════════════════════════════════ */
+const $ = id => document.getElementById(id);
+const UID = () => Math.random().toString(36).slice(2,9).toUpperCase();
+const NOW = () => new Date().toISOString().split('T')[0];
+const FD = d => new Date(d).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});
+const INR = n => n == 0 ? 'FREE' : '₹'+Number(n).toLocaleString('en-IN');
+const gS = id => DB.services.find(s => s.id === id);
+
+function sbApp(s) {
+  const m = {pending:'bbl', processing:'bamb', completed:'bgn', rejected:'brd', 'on hold':'bgr'};
+  return `<span class="badge ${m[s]||'bgr'}">${s}</span>`;
+}
+
+function toast(msg, type) {
+  type = type||'s';
+  const t = document.createElement('div');
+  t.className = 'toast '+type; t.textContent = msg;
+  t.onclick = () => t.remove();
+  $('toasts').appendChild(t);
+  setTimeout(() => { t.style.opacity='0'; t.style.transition='.4s'; setTimeout(() => t.remove(), 400); }, 4500);
+}
+function om(id) { $(id).classList.add('open'); }
+function cm(id) { $(id).classList.remove('open'); }
+document.querySelectorAll('.mbg').forEach(m => m.addEventListener('click', e => { if(e.target===m) m.classList.remove('open'); }));
+
+/* ════════════════════════════════════════
+   NAVIGATION
+════════════════════════════════════════ */
+function gp(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const pg = $('page-'+name); if(pg) pg.classList.add('active');
+  window.scrollTo(0,0);
+  if(name==='home') rHome();
+  if(name==='admin') rA();
+  if(name==='myapps') rMyApps();
+}
+
+function updateNav() {
+  const u = DB.me;
+  $('tn-login').style.display  = u ? 'none' : '';
+  $('user-menu').style.display = u ? '' : 'none';
+  if(u) {
+    const initials = u.name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
+    $('user-avatar').textContent = initials;
+    $('ud-name').textContent = u.name;
+    $('ud-role').textContent = u.role==='admin' ? '🔐 Administrator' : '👤 Customer';
+    $('ud-apps').style.display = u.role==='customer' ? '' : 'none';
+    $('ud-adm').style.display  = u.role==='admin'    ? '' : 'none';
+  }
+}
+function toggleUserMenu(e) {
+  if(e) e.stopPropagation();
+  $('user-dropdown').classList.toggle('open');
+}
+function closeUserMenu() {
+  $('user-dropdown').classList.remove('open');
+}
+document.addEventListener('click', function(e) {
+  const menu = $('user-menu');
+  if(menu && !menu.contains(e.target)) closeUserMenu();
+});
+
+/* ════════════════════════════════════════
+   AUTH
+════════════════════════════════════════ */
+function setTab(tab) {
+  ['login','signup'].forEach(t => { $('tab-'+t).classList.remove('on'); $('form-'+t).style.display='none'; });
+  $('tab-'+tab).classList.add('on'); $('form-'+tab).style.display='';
+}
+
+
+function doLogin() {
+  const em = $('li-e').value.trim(), pw = $('li-p').value.trim();
+  if(!em) { toast('Mobile number ya email enter karein','e'); return; }
+  if(!pw) { toast('Password enter karein','e'); return; }
+  const emLower = em.toLowerCase();
+  let u = DB.users.find(u =>
+    u.email.toLowerCase()===emLower ||
+    u.mobile===em ||
+    u.mobile===emLower
+  );
+  if(!u) { toast('Yeh mobile/email registered nahi hai','e'); return; }
+  if(u.pw !== pw) { toast('Password galat hai','e'); return; }
+  DB.me=u; updateNav(); toast('Welcome, '+u.name+'! 👋');
+  if(u.role==='admin') gp('admin'); else gp('home');
+}
+
+function doSignup() {
+  const fn=$('sf').value.trim(), ln=$('sl').value.trim();
+  const mob=$('sm').value.trim(), em=$('se').value.trim().toLowerCase(), pw=$('sp').value.trim();
+  if(!fn) { toast('Pehla naam zaroori hai','e'); return; }
+  if(!mob) { toast('Mobile number zaroori hai','e'); return; }
+  if(mob.length!==10||!/^[6-9]\d{9}$/.test(mob)) { toast('Valid 10-digit mobile number darj karein (6-9 se shuru)','e'); return; }
+  if(!pw) { toast('Password zaroori hai','e'); return; }
+  if(pw.length<6) { toast('Password kam se kam 6 characters ka hona chahiye','e'); return; }
+  if(DB.users.find(u => u.mobile===mob)) { toast('Yeh mobile number pehle se registered hai, login karein','w'); return; }
+  if(em && DB.users.find(u => u.email===em)) { toast('Yeh email pehle se registered hai','w'); return; }
+  const u = {id:'u'+UID(), name:fn+(ln?' '+ln:''), email:em||mob+'@csc.in', mobile:mob, pw:pw, role:'customer', joined:NOW()};
+  DB.users.push(u); DB.me=u; saveDB(); updateNav();
+  toast('Account ban gaya! Welcome, '+u.name+' 🎉');
+  gp('home');
+}
+
+function doLogout() { DB.me=null; updateNav(); gp('home'); toast('Logged out','i'); }
+
+/* ════════════════════════════════════════
+   HOME / SERVICES LISTING
+════════════════════════════════════════ */
+let _activeCat = 'All';
+
+function rHome() {
+  const q = ($('svc-search').value||'').toLowerCase().trim();
+  const activeSvcs = DB.services.filter(s => s.status==='active');
+  const cats = ['All', ...new Set(activeSvcs.map(s => s.cat))];
+
+  $('cats-row').innerHTML = cats.map(c =>
+    `<span class="cpill${c===_activeCat?' on':''}" onclick="filterCat('${c}')">${c}</span>`
+  ).join('');
+
+  let svcs = activeSvcs;
+  if(_activeCat!=='All') svcs = svcs.filter(s => s.cat===_activeCat);
+  if(q) svcs = svcs.filter(s =>
+    s.name.toLowerCase().includes(q) ||
+    s.cat.toLowerCase().includes(q) ||
+    (s.desc||'').toLowerCase().includes(q)
+  );
+
+  $('hs-svc').textContent = activeSvcs.length;
+  $('hs-app').textContent = DB.applications.length;
+
+  if(!svcs.length) {
+    $('svc-grid').innerHTML = `<div class="empty" style="grid-column:1/-1"><div class="ei">🔍</div><p>No service found for "<strong>${q||_activeCat}</strong>"</p></div>`;
+    return;
+  }
+
+  $('svc-grid').innerHTML = svcs.map(s => {
+    const feeDisp = s.fee==0
+      ? '<span class="free-badge">FREE</span>'
+      : `<span style="font-size:16px;font-weight:800;color:var(--b)">₹${s.fee}</span> <span style="font-size:10px;color:var(--t3)">fee</span>`;
+    return `<div class="sc-card" onclick="openDetail('${s.id}')">
+      <div class="sc-card-top">
+        <div class="sc-icon" style="background:${s.color||'#e8eeff'}">${s.emoji||'📄'}</div>
+        <div class="sc-info">
+          <div class="sc-name">${s.name}</div>
+          <div class="sc-cat">${s.cat}</div>
+        </div>
+      </div>
+      <div class="sc-desc">${(s.desc||'').substring(0,90)}…</div>
+      <div class="sc-foot">
+        <div>${feeDisp}</div>
+        <button class="apply-btn" onclick="event.stopPropagation();quickApply('${s.id}')">Apply →</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function filterCat(c) { _activeCat=c; rHome(); }
+
+function openDetail(sid) {
+  const s = gS(sid); if(!s) return;
+  DB._curSvcId = sid;
+  $('det-icon').textContent = s.emoji||'📄';
+  $('det-name').textContent = s.name;
+  $('det-cat').textContent = s.cat;
+  $('det-desc').textContent = s.desc||'';
+  $('det-fee').textContent = s.fee==0 ? 'FREE' : '₹'+s.fee;
+  $('det-time').textContent = s.time||'—';
+  $('det-badge').innerHTML = s.fee==0 ? '<span class="badge bgn">FREE Service</span>' : '<span class="badge bbl">Fee: ₹'+s.fee+'</span>';
+  if(s.docs && s.docs.length) {
+    $('det-docs').innerHTML = `<h4>📎 Required Documents</h4><ul class="doc-list">${s.docs.map(d=>`<li>${d}</li>`).join('')}</ul>`;
+  } else {
+    $('det-docs').innerHTML = '';
+  }
+  gp('detail');
+}
+
+function quickApply(sid) { DB._curSvcId=sid; openApply(); }
+
+function openApply() {
+  if(!DB.me) { toast('Please login to apply','w'); gp('auth'); return; }
+  const s = gS(DB._curSvcId); if(!s) return;
+  $('ap-ttl').textContent = 'Apply: '+s.name;
+  $('ap-svc-info').innerHTML = `<div style="width:44px;height:44px;border-radius:10px;background:${s.color};display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0">${s.emoji}</div><div><div style="font-size:14px;font-weight:800;font-family:'Baloo 2',sans-serif">${s.name}</div><div style="font-size:11px;color:var(--t3)">${s.cat} · ${s.time}</div></div>`;
+  $('ap-fee-disp').innerHTML = s.fee==0 ? '<span class="badge bgn" style="font-size:13px">FREE</span>' : `<strong>Fee: ₹${s.fee}</strong>`;
+  $('ap-n').value = DB.me.name||'';
+  $('ap-ph').value = DB.me.mobile||'';
+  om('m-apply');
+}
+
+/* ════════════════════════════════════════
+   SUBMIT APPLICATION + NOTIFICATIONS
+════════════════════════════════════════ */
+function submitApp() {
+  const name=$('ap-n').value.trim(), ph=$('ap-ph').value.trim(), addr=$('ap-addr').value.trim();
+  if(!name) { toast('Please enter applicant name','e'); return; }
+  if(!ph||ph.length<10) { toast('Please enter valid mobile number','e'); return; }
+  if(!addr) { toast('Please enter address','e'); return; }
+  const s = gS(DB._curSvcId); if(!s) return;
+  const appId = 'APP-'+UID();
+  const app = {
+    id: appId, uid: DB.me.id, svcId: s.id, svcName: s.name,
+    name: name, fatherName: $('ap-fn').value.trim(),
+    mobile: ph, aadhar: $('ap-aa').value.trim(),
+    addr: addr, dob: $('ap-dob').value, gender: $('ap-g').value,
+    note: $('ap-note').value.trim(),
+    fee: s.fee, status: 'pending', date: NOW(),
+    _notifSent: false
+  };
+  DB.applications.push(app);
+  saveDB();
+  buildNotif(app, s);
+  sendNotif(app);
+  cm('m-apply');
+  $('ok-id').textContent = 'Application ID: '+appId;
+  // Fill receipt card
+  DB._lastApp = app;
+  DB._lastSvc = s;
+  fillReceipt(app, s);
+  om('m-ok');
+  rHome();
+}
+
+function buildNotif(app, svc) {
+  app._notifEmail = `NEW APPLICATION — ${DB.cfg.name}
+${'─'.repeat(45)}
+
+🔖 App ID    : ${app.id}
+📅 Date      : ${FD(app.date)}
+🗂️  Service   : ${app.svcName}
+💰 Fee       : ${INR(app.fee)}
+📦 Status    : ${app.status.toUpperCase()}
+
+👤 APPLICANT DETAILS
+   Name       : ${app.name}
+   Father     : ${app.fatherName||'—'}
+   Mobile     : ${app.mobile}
+   Aadhar     : ${app.aadhar||'—'}
+   Address    : ${app.addr}
+   DOB        : ${app.dob||'—'}
+   Gender     : ${app.gender||'—'}
+   Notes      : ${app.note||'—'}
+
+Please process this application.
+— ${DB.cfg.name}`;
+
+  app._notifWA = `🏛️ *${DB.cfg.name}*
+🔔 *New Application — ${app.id}*
+📅 Date: ${FD(app.date)}
+
+━━━━━━━━━━━━━━━━━━━━━━━
+👤 *APPLICANT DETAILS*
+━━━━━━━━━━━━━━━━━━━━━━━
+🙍 *Name:* ${app.name}
+👨 *Father's Name:* ${app.fatherName||'—'}
+📱 *Mobile:* ${app.mobile}
+🪪 *Aadhar:* ${app.aadhar||'—'}
+📍 *Address:* ${app.addr}
+🎂 *Date of Birth:* ${app.dob||'—'}
+⚧ *Gender:* ${app.gender||'—'}
+📝 *Notes:* ${app.note||'—'}
+
+━━━━━━━━━━━━━━━━━━━━━━━
+🗂️ *SERVICE DETAILS*
+━━━━━━━━━━━━━━━━━━━━━━━
+📋 *Service:* ${app.svcName}
+💰 *Fee:* ${INR(app.fee)}
+📦 *Status:* PENDING
+
+⚠️ Kripya application process karein!`;
+}
+
+
+function fillReceipt(app, s) {
+  const cfg = DB.cfg;
+  $('rc-centre').textContent  = cfg.name || 'CSC Centre';
+  $('rc-centre2').textContent = cfg.name || 'CSC Centre';
+  $('rc-id').textContent      = app.id;
+  $('rc-svc').textContent     = app.svcName;
+  $('rc-date').textContent    = new Date(app.date).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});
+  $('rc-fee').textContent     = app.fee > 0 ? '₹'+app.fee : 'FREE';
+  $('rc-name').textContent    = app.name;
+  $('rc-mob').textContent     = app.mobile;
+  $('rc-addr').textContent    = app.addr;
+}
+
+function downloadReceipt() {
+  const card = $('receipt-card');
+  // Temporarily make visible off-screen
+  card.style.left = '-9999px';
+  card.style.top  = '0';
+  card.style.display = 'block';
+
+  const btn = document.querySelector('[onclick="downloadReceipt()"]');
+  if(btn){ btn.textContent = '⏳ Generating...'; btn.disabled = true; }
+
+  html2canvas(card, {
+    scale: 3,
+    useCORS: true,
+    backgroundColor: '#ffffff',
+    logging: false
+  }).then(canvas => {
+    const appId = DB._lastApp ? DB._lastApp.id : 'receipt';
+    const link  = document.createElement('a');
+    link.download = 'Receipt-'+appId+'.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+    card.style.left = '-9999px';
+    if(btn){ btn.textContent = '📥 Receipt Download Karo'; btn.disabled = false; }
+    toast('📥 Receipt download ho gayi! ✓','s');
+  }).catch(() => {
+    card.style.left = '-9999px';
+    if(btn){ btn.textContent = '📥 Receipt Download Karo'; btn.disabled = false; }
+    toast('Receipt generate nahi hua, dobara try karein','e');
+  });
+}
+
+function sendNotif(app) {
+  const waNum = DB.cfg.notifPhone.replace(/\D/g,'');
+  const waUrl = `https://api.whatsapp.com/send?phone=91${waNum}&text=${encodeURIComponent(app._notifWA)}`;
+  app._notifSent = true;
+  window.open(waUrl, '_blank');
+  toast('📱 WhatsApp par notification bheja gaya! ✓','s');
+}
+
+function viewNotif(aid) {
+  const a = DB.applications.find(a => a.id===aid); if(!a) return;
+  DB._curNotifId = aid;
+  $('notif-body').innerHTML = `
+    <div style="margin-bottom:14px">
+      <div class="lbl" style="margin-bottom:7px">📧 Email → ${DB.cfg.notifEmail}</div>
+      <pre style="background:#f5f7ff;border:1.5px solid var(--bd);border-radius:9px;padding:13px;font-size:11px;color:var(--t2);white-space:pre-wrap;font-family:'Noto Sans',sans-serif;line-height:1.8;max-height:200px;overflow-y:auto">${a._notifEmail||'No log'}</pre>
+    </div>
+    <div>
+      <div class="lbl" style="margin-bottom:7px">📱 WhatsApp → +91 ${DB.cfg.notifPhone}</div>
+      <pre style="background:#e8f5ec;border:1.5px solid #a8d5b5;border-radius:9px;padding:13px;font-size:11px;color:var(--g);white-space:pre-wrap;font-family:'Noto Sans',sans-serif;line-height:1.8;max-height:200px;overflow-y:auto">${a._notifWA||'No log'}</pre>
+    </div>`;
+  om('m-notif');
+}
+
+function resendNotif() {
+  const a = DB.applications.find(a => a.id===DB._curNotifId); if(!a) return;
+  const s = gS(a.svcId); if(s && !a._notifWA) buildNotif(a, s);
+  const waNum = DB.cfg.notifPhone.replace(/\D/g,'');
+  window.open(`https://wa.me/91${waNum}?text=${encodeURIComponent(a._notifWA)}`,'_blank');
+  setTimeout(() => window.open(`mailto:${DB.cfg.notifEmail}?subject=Application ${a.id}&body=${encodeURIComponent(a._notifEmail)}`,'_blank'), 800);
+  toast('Notifications re-sent! 📤','s'); cm('m-notif');
+}
+
+/* ════════════════════════════════════════
+   MY APPLICATIONS
+════════════════════════════════════════ */
+function rMyApps() {
+  if(!DB.me) { gp('auth'); return; }
+  const apps = DB.applications.filter(a => a.uid===DB.me.id);
+  const wrap = $('myapps-wrap');
+  if(!apps.length) {
+    wrap.innerHTML = `<div class="empty"><div class="ei">📋</div><p>Koi application nahi hai.<br><a href="#" onclick="gp('home')" style="color:var(--b);font-weight:800">Services dekhen →</a></p></div>`;
+    return;
+  }
+  wrap.innerHTML = apps.slice().reverse().map(a => {
+    const steps = ['pending','processing','completed'];
+    const si = steps.indexOf(a.status); 
+    return `<div class="app-card">
+      <div class="app-head">
+        <div>
+          <div class="app-id">${a.id}</div>
+          <div class="app-meta">🗂️ ${a.svcName}</div>
+          <div class="app-meta">📅 ${FD(a.date)} &nbsp;·&nbsp; 📱 ${a.mobile}</div>
+        </div>
+        <div style="text-align:right">
+          ${sbApp(a.status)}
+          <div style="font-size:18px;font-weight:800;color:var(--b);margin-top:5px">${INR(a.fee)}</div>
+        </div>
+      </div>
+      <div class="timeline">
+        ${['Submitted','Processing','Completed'].map((lbl,i) => `
+          <div class="tl-step">
+            <div class="tl-dot ${i<si?'done':i===si?'active':'pending'}">${i<si?'✓':i+1}</div>
+            <div class="tl-label">${lbl}</div>
+          </div>`).join('')}
+      </div>
+      <div class="app-detail">
+        <div class="app-row"><span>👤 Name</span><span>${a.name}</span></div>
+        <div class="app-row"><span>📍 Address</span><span>${a.addr}</span></div>
+        ${a.note?`<div class="app-row"><span>📝 Note</span><span>${a.note}</span></div>`:''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+/* ════════════════════════════════════════
+   SERVICE MANAGEMENT (ADMIN)
+════════════════════════════════════════ */
+function openSM(sid) {
+  $('sm-id').value=''; $('sm-n').value=''; $('sm-c').value='Identity Documents';
+  $('sm-d').value=''; $('sm-f').value='0'; $('sm-t').value='';
+  $('sm-e').value='📄'; $('sm-cl').value='#e8eeff';
+  $('sm-docs').value=''; $('sm-s').value='active';
+  $('sm-ttl').textContent='Add Service';
+  if(sid) {
+    const s=gS(sid); if(!s) return;
+    $('sm-id').value=s.id; $('sm-n').value=s.name; $('sm-c').value=s.cat;
+    $('sm-d').value=s.desc||''; $('sm-f').value=s.fee; $('sm-t').value=s.time||'';
+    $('sm-e').value=s.emoji||'📄'; $('sm-cl').value=s.color||'#e8eeff';
+    $('sm-docs').value=(s.docs||[]).join(', '); $('sm-s').value=s.status||'active';
+    $('sm-ttl').textContent='Edit Service';
+  }
+  om('m-svc');
+}
+
+function saveSvc() {
+  if(!DB.me||DB.me.role!=='admin') { toast('Admin only','e'); return; }
+  const name=$('sm-n').value.trim();
+  if(!name) { toast('Service name required','e'); return; }
+  const sid=$('sm-id').value;
+  const docsRaw=$('sm-docs').value.trim();
+  const data = {
+    name: name, cat:$('sm-c').value, desc:$('sm-d').value.trim(),
+    fee:parseFloat($('sm-f').value)||0, time:$('sm-t').value.trim(),
+    emoji:$('sm-e').value||'📄', color:$('sm-cl').value||'#e8eeff',
+    docs: docsRaw ? docsRaw.split(',').map(d=>d.trim()).filter(Boolean) : [],
+    status:$('sm-s').value
+  };
+  if(sid) {
+    if(!confirm('Kya aap yeh service update karna chahte hain?\n\nYeh change sabko dikhega.')) return;
+    const idx=DB.services.findIndex(s=>s.id===sid);
+    if(idx>-1) DB.services[idx]=Object.assign({},DB.services[idx],data);
+    toast('Service update ho gayi! ✓');
+  } else {
+    if(!confirm('Kya aap yeh nayi service add karna chahte hain?')) return;
+    data.id='s'+UID(); DB.services.push(data);
+    toast('Nayi service add ho gayi! ✓');
+  }
+  cm('m-svc'); saveDB(); rA(); rHome();
+}
+
+function delSvc(sid) {
+  const s = DB.services.find(x=>x.id===sid);
+  if(!confirm('⚠️ Kya aap "'+( s?s.name:'is service')+'" ko permanently delete karna chahte hain?\n\nYeh action undo nahi hoga!')) return;
+  DB.services=DB.services.filter(s=>s.id!==sid);
+  toast('Service delete ho gayi','w'); saveDB(); rA(); rHome();
+}
+
+/* ════════════════════════════════════════
+   ADMIN DASHBOARD
+════════════════════════════════════════ */
+function rA() {
+  const totalApps = DB.applications.length;
+  const pending = DB.applications.filter(a=>a.status==='pending').length;
+  const completed = DB.applications.filter(a=>a.status==='completed').length;
+  const totalRev = DB.applications.filter(a=>a.status!=='rejected').reduce((s,a)=>s+a.fee,0);
+
+  $('a-stats').innerHTML = `
+    <div class="stat-c"><div class="si">🗂️</div><div class="sl">Total Services</div><div class="sv b">${DB.services.filter(s=>s.status==='active').length}</div></div>
+    <div class="stat-c"><div class="si">📋</div><div class="sl">Applications</div><div class="sv b">${totalApps}</div></div>
+    <div class="stat-c"><div class="si">⏳</div><div class="sl">Pending</div><div class="sv a">${pending}</div></div>
+    <div class="stat-c"><div class="si">✅</div><div class="sl">Completed</div><div class="sv g">${completed}</div></div>
+    <div class="stat-c"><div class="si">💰</div><div class="sl">Revenue</div><div class="sv g">₹${totalRev.toLocaleString()}</div></div>
+    <div class="stat-c"><div class="si">👥</div><div class="sl">Customers</div><div class="sv b" onclick="showAS('us')" style="cursor:pointer;text-decoration:underline">${DB.users.filter(u=>u.role==='customer').length}</div></div>`;
+
+  $('a-rec').innerHTML = DB.applications.length
+    ? DB.applications.slice().reverse().slice(0,6).map(a => `
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid #eef1fb;font-size:12px">
+        <div>
+          <strong style="color:var(--b)">${a.id}</strong>
+          <span style="font-size:10px;color:var(--t3);margin-left:8px">${a.name} · ${FD(a.date)}</span>
+          <div style="font-size:10px;color:var(--t3)">${a.svcName}</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
+          <strong style="color:var(--b)">${INR(a.fee)}</strong>${sbApp(a.status)}
+        </div>
+      </div>`).join('')
+    : '<div class="empty" style="padding:16px">No applications yet</div>';
+
+  rASvc(); rAApp(); rAUsers();
+}
+
+function showAS(name) {
+  document.querySelectorAll('#page-admin .ds').forEach(s=>s.classList.remove('on'));
+  document.querySelectorAll('[id^="an-"]').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll('.amt').forEach(b=>b.classList.remove('on'));
+  $('ads-'+name).classList.add('on'); $('an-'+name).classList.add('on');
+  const mob=$('amt-'+name); if(mob) mob.classList.add('on');
+  if(name==='se') {
+    $('a-pn').value   = DB.cfg.name        || '';
+    $('a-addr').value = DB.cfg.addr        || '';
+    $('a-ne').value   = DB.cfg.notifEmail  || '';
+    $('a-nw').value   = DB.cfg.notifPhone  || '';
+  }
+  rA();
+}
+
+function rASvc() {
+  $('a-svc-body').innerHTML = DB.services.length
+    ? DB.services.map(s => `<tr>
+        <td><div style="width:36px;height:36px;border-radius:8px;background:${s.color};display:flex;align-items:center;justify-content:center;font-size:20px">${s.emoji}</div></td>
+        <td><strong>${s.name}</strong><div style="font-size:10px;color:var(--t3);margin-top:2px">${(s.desc||'').substring(0,50)}…</div></td>
+        <td><span class="badge bgr">${s.cat}</span></td>
+        <td style="font-weight:800;color:${s.fee==0?'var(--g)':'var(--b)'}">${INR(s.fee)}</td>
+        <td>${s.status==='active'?'<span class="badge bgn">Active</span>':'<span class="badge bgr">Inactive</span>'}</td>
+        <td><div class="ac">
+          <button class="btn sm" onclick="openSM('${s.id}')">✏️ Edit</button>
+          <button class="btn sm d" onclick="delSvc('${s.id}')">🗑️</button>
+        </div></td>
+      </tr>`).join('')
+    : '<tr><td colspan="6"><div class="empty" style="padding:20px">No services yet. Add your first service!</div></td></tr>';
+}
+
+function rAApp() {
+  $('a-app-wrap').innerHTML = DB.applications.length
+    ? DB.applications.slice().reverse().map(a => `
+      <div class="app-card">
+        <div class="app-head">
+          <div>
+            <div class="app-id">${a.id}</div>
+            <div class="app-meta">🗂️ ${a.svcName}</div>
+            <div class="app-meta">📅 ${FD(a.date)} &nbsp;·&nbsp; 👤 ${a.name} &nbsp;·&nbsp; 📱 ${a.mobile}</div>
+            <div class="app-meta">📍 ${a.addr}</div>
+            ${a.fatherName?`<div class="app-meta">👨 Father: ${a.fatherName}</div>`:''}
+            ${a.aadhar?`<div class="app-meta">🪪 Aadhar: ${a.aadhar}</div>`:''}
+          </div>
+          <div style="text-align:right">
+            ${sbApp(a.status)}
+            <div style="font-size:18px;font-weight:800;color:var(--b);margin-top:4px">${INR(a.fee)}</div>
+            <button class="btn sm" style="margin-top:8px" onclick="viewNotif('${a.id}')">🔔 Notif</button>
+          </div>
+        </div>
+        <div class="sbtns" style="margin-top:8px">
+          <span style="font-size:10px;color:var(--t3);font-weight:700">Update Status:</span>
+          ${['pending','processing','completed','rejected','on hold'].map(st =>
+            `<button class="sbtn${a.status===st?' on':''}" onclick="updApp('${a.id}','${st}')">${st}</button>`
+          ).join('')}
+        </div>
+      </div>`).join('')
+    : '<div class="empty"><div class="ei">📋</div><p>No applications yet</p></div>';
+}
+
+function updApp(aid, status) {
+  const a=DB.applications.find(a=>a.id===aid); if(!a) return;
+  a.status=status; saveDB(); toast('Application '+aid+' → '+status,'s'); rA();
+}
+
+function saveAS() {
+  const pn = $('a-pn').value.trim();
+  const addr = $('a-addr').value.trim();
+  const ne = $('a-ne').value.trim();
+  const nw = $('a-nw').value.trim();
+  if(!pn)   { toast('Centre Name khali nahi chhod sakte','e'); return; }
+  if(!addr) { toast('Address khali nahi chhod sakte','e'); return; }
+  DB.cfg.name       = pn;
+  DB.cfg.addr       = addr;
+  DB.cfg.notifEmail = ne || DB.cfg.notifEmail;
+  DB.cfg.notifPhone = nw || DB.cfg.notifPhone;
+  saveDB();
+  // Notification banner update
+  const banner = document.querySelector('.notif-banner p');
+  if(banner) banner.innerHTML = '📧 Email: '+DB.cfg.notifEmail+'<br>📱 WhatsApp / SMS: +91 '+DB.cfg.notifPhone;
+  toast('Settings save ho gayi! ✓','s');
+}
+
+/* ════════════════════════════════════════
+   INIT
+════════════════════════════════════════ */
+/* ════════════════════════════════════════
+   USER MANAGEMENT
+════════════════════════════════════════ */
+function rAUsers() {
+  const totalUsers = DB.users.filter(u=>u.role==='customer').length;
+  const totalAdmins = DB.users.filter(u=>u.role==='admin').length;
+
+  $('u-stats').innerHTML = `
+    <div class="stat-c"><div class="si">👥</div><div class="sl">Total Users</div><div class="sv b">${DB.users.length}</div></div>
+    <div class="stat-c"><div class="si">👤</div><div class="sl">Customers</div><div class="sv g">${totalUsers}</div></div>
+    <div class="stat-c"><div class="si">👑</div><div class="sl">Admins</div><div class="sv a">${totalAdmins}</div></div>`;
+
+  $('a-usr-body').innerHTML = DB.users.length
+    ? DB.users.map(u => {
+        const appCount = DB.applications.filter(a=>a.uid===u.id).length;
+        const isCurrentUser = DB.me && DB.me.id === u.id;
+        return `<tr>
+          <td>
+            <div style="display:flex;align-items:center;gap:9px">
+              <div style="width:34px;height:34px;border-radius:50%;background:${u.role==='admin'?'var(--bbg)':'var(--gbg)'};display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:${u.role==='admin'?'var(--b)':'var(--g)'}">
+                ${u.name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2)}
+              </div>
+              <div>
+                <div style="font-size:13px;font-weight:800">${u.name} ${isCurrentUser?'<span class="badge bbl" style="font-size:9px">Aap</span>':''}</div>
+                <div style="font-size:10px;color:var(--t3)">${u.email||'—'}</div>
+              </div>
+            </div>
+          </td>
+          <td style="font-weight:700">${u.mobile}</td>
+          <td>${u.role==='admin'?'<span class="badge bbl">👑 Admin</span>':'<span class="badge bgn">👤 Customer</span>'}</td>
+          <td style="text-align:center;font-weight:800;color:var(--b)">${appCount}</td>
+          <td style="font-size:11px;color:var(--t3)">${u.joined||'—'}</td>
+          <td><div class="ac">
+            <button class="btn sm" onclick="openUM('${u.id}')">✏️ Edit</button>
+            ${!isCurrentUser?`<button class="btn sm d" onclick="deleteUser('${u.id}')">🗑️</button>`:''}
+          </div></td>
+        </tr>`;
+      }).join('')
+    : '<tr><td colspan="6"><div class="empty" style="padding:16px">No users found</div></td></tr>';
+}
+
+function openUM(uid) {
+  $('um-id').value=''; $('um-n').value=''; $('um-m').value='';
+  $('um-e').value=''; $('um-p').value=''; $('um-r').value='customer';
+  $('um-info').style.display='none'; $('um-ttl').textContent='Add User';
+
+  if(uid) {
+    const u = DB.users.find(x=>x.id===uid); if(!u) return;
+    $('um-id').value=u.id; $('um-n').value=u.name; $('um-m').value=u.mobile;
+    $('um-e').value=u.email||''; $('um-p').value=u.pw; $('um-r').value=u.role;
+    $('um-ttl').textContent='Edit User — '+u.name;
+  }
+  om('m-user');
+}
+
+function genPass() {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#';
+  let pass = '';
+  for(let i=0; i<8; i++) pass += chars[Math.floor(Math.random()*chars.length)];
+  $('um-p').value = pass;
+  toast('Password generate hua — copy kar lein! 🔑','i');
+}
+
+function saveUser() {
+  const uid = $('um-id').value;
+  const name = $('um-n').value.trim();
+  const mob  = $('um-m').value.trim();
+  const em   = $('um-e').value.trim().toLowerCase();
+  const pw   = $('um-p').value.trim();
+  const role = $('um-r').value;
+
+  if(!name) { toast('Naam zaroori hai','e'); return; }
+  if(!mob || mob.length!==10 || !/^[6-9]\d{9}$/.test(mob)) {
+    toast('Valid 10-digit mobile number darj karein','e'); return;
+  }
+  if(!pw || pw.length<6) { toast('Password kam se kam 6 characters ka hona chahiye','e'); return; }
+
+  if(uid) {
+    // Edit existing user
+    const idx = DB.users.findIndex(u=>u.id===uid);
+    if(idx === -1) { toast('User nahi mila','e'); return; }
+    // Check mobile conflict with OTHER users
+    const conflict = DB.users.find(u=>u.mobile===mob && u.id!==uid);
+    if(conflict) { toast('Yeh mobile number kisi aur user ka hai','e'); return; }
+    DB.users[idx] = Object.assign({}, DB.users[idx], {name, mobile:mob, email:em||DB.users[idx].email, pw, role});
+    saveDB();
+    toast(name+' ka data update ho gaya! ✓','s');
+    // Show updated info
+    $('um-info-text').innerHTML = `📱 Mobile: <strong>${mob}</strong><br>🔑 Password: <strong>${pw}</strong><br>👤 Role: <strong>${role}</strong>`;
+    $('um-info').style.display='';
+  } else {
+    // Add new user
+    if(DB.users.find(u=>u.mobile===mob)) { toast('Yeh mobile number pehle se registered hai','e'); return; }
+    if(em && DB.users.find(u=>u.email===em)) { toast('Yeh email pehle se registered hai','e'); return; }
+    const newUser = {
+      id:'u'+UID(), name, email:em||mob+'@csc.in',
+      mobile:mob, pw, role, joined:NOW()
+    };
+    DB.users.push(newUser);
+    saveDB();
+    toast('Naya user add ho gaya: '+name+' ✓','s');
+    // Show new user info clearly
+    $('um-info-text').innerHTML =
+      `📱 Mobile: <strong>${mob}</strong><br>` +
+      `🔑 Password: <strong>${pw}</strong><br>` +
+      `👤 Role: <strong>${role}</strong><br>` +
+      `<div style="margin-top:8px;padding:8px;background:#fff;border-radius:6px;border:1px dashed var(--b);font-size:11px;color:var(--r);font-weight:700">` +
+      `⚠️ Yeh details abhi copy kar lein — baad mein password nahi dikh sakta!</div>`;
+    $('um-info').style.display='';
+  }
+  rAUsers();
+}
+
+function deleteUser(uid) {
+  const u = DB.users.find(x=>x.id===uid);
+  if(!u) return;
+  if(u.role==='admin') { toast('Admin user delete nahi ho sakta','e'); return; }
+  if(!confirm('⚠️ Kya aap "'+u.name+'" ('+u.mobile+') ko delete karna chahte hain?\n\nInke saare applications bhi hata diye jayenge!')) return;
+  DB.users = DB.users.filter(x=>x.id!==uid);
+  DB.applications = DB.applications.filter(a=>a.uid!==uid);
+  saveDB();
+  toast(u.name+' delete ho gaya','w');
+  rAUsers();
+}
+
+
+/* ════════════════════════════════════════
+   USER MANAGEMENT (ADMIN)
+════════════════════════════════════════ */
+function rAUsr() {
+  const allUsers = DB.users;
+  const customers = allUsers.filter(u => u.role === 'customer');
+  const admins = allUsers.filter(u => u.role === 'admin');
+
+  // Stats
+  $('u-stats').innerHTML = `
+    <div class="stat-c"><div class="si">👥</div><div class="sl">Total Users</div><div class="sv b">${allUsers.length}</div></div>
+    <div class="stat-c"><div class="si">👤</div><div class="sl">Customers</div><div class="sv g">${customers.length}</div></div>
+    <div class="stat-c"><div class="si">🔐</div><div class="sl">Admins</div><div class="sv r">${admins.length}</div></div>`;
+
+  // Users table
+  $('a-usr-body').innerHTML = allUsers.length ? allUsers.map(u => {
+    const appCount = DB.applications.filter(a => a.uid === u.id).length;
+    const joined = u.joined || '—';
+    const roleBadge = u.role === 'admin'
+      ? '<span class="badge brd">🔐 Admin</span>'
+      : '<span class="badge bbl">👤 Customer</span>';
+    return `<tr>
+      <td>
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="width:34px;height:34px;border-radius:50%;background:${u.role==='admin'?'var(--rbg)':'var(--bbg)'};display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:${u.role==='admin'?'var(--r)':'var(--b)'};flex-shrink:0">
+            ${u.name.charAt(0).toUpperCase()}
+          </div>
+          <div>
+            <div style="font-size:13px;font-weight:800">${u.name}</div>
+            <div style="font-size:10px;color:var(--t3)">${u.email||'—'}</div>
+          </div>
+        </div>
+      </td>
+      <td style="font-weight:700">${u.mobile||'—'}</td>
+      <td>${roleBadge}</td>
+      <td style="text-align:center">
+        <span style="background:var(--bbg);color:var(--b);padding:2px 10px;border-radius:12px;font-size:12px;font-weight:800">${appCount}</span>
+      </td>
+      <td style="font-size:11px;color:var(--t3)">${joined}</td>
+      <td>
+        <div class="ac">
+          <button class="btn sm" onclick="viewUser('${u.id}')">👁️</button>
+          <button class="btn sm" onclick="openUM('${u.id}')">✏️</button>
+          ${u.role !== 'admin' ? `<button class="btn sm d" onclick="delUser('${u.id}')">🗑️</button>` : ''}
+        </div>
+      </td>
+    </tr>`;
+  }).join('') : '<tr><td colspan="6"><div class="empty" style="padding:20px">Koi user nahi hai</div></td></tr>';
+}
+
+function openUM(uid) {
+  // Reset form
+  $('um-id').value = ''; $('um-n').value = ''; $('um-m').value = '';
+  $('um-e').value = ''; $('um-p').value = ''; $('um-addr').value = '';
+  $('um-r').value = 'customer';
+  $('um-ttl').textContent = 'Add User';
+  $('um-pw-lbl').textContent = 'Password *';
+  $('um-edit-note').style.display = 'none';
+
+  if(uid) {
+    const u = DB.users.find(u => u.id === uid);
+    if(!u) return;
+    $('um-id').value = u.id;
+    $('um-n').value = u.name || '';
+    $('um-m').value = u.mobile || '';
+    $('um-e').value = u.email || '';
+    $('um-addr').value = u.addr || '';
+    $('um-r').value = u.role || 'customer';
+    $('um-p').value = '';
+    $('um-ttl').textContent = 'Edit User';
+    $('um-pw-lbl').textContent = 'New Password';
+    $('um-edit-note').style.display = '';
+  }
+  om('m-user');
+}
+
+function saveUser() {
+  if(!DB.me || DB.me.role !== 'admin') { toast('Admin only', 'e'); return; }
+  const uid = $('um-id').value;
+  const name = $('um-n').value.trim();
+  const mob  = $('um-m').value.trim();
+  const em   = $('um-e').value.trim().toLowerCase();
+  const pw   = $('um-p').value.trim();
+  const role = $('um-r').value;
+  const addr = $('um-addr').value.trim();
+
+  if(!name) { toast('Naam zaroori hai', 'e'); return; }
+  if(!mob)  { toast('Mobile number zaroori hai', 'e'); return; }
+  if(mob.length !== 10 || !/^[6-9]\d{9}$/.test(mob)) { toast('Valid 10-digit mobile darj karein', 'e'); return; }
+
+  if(uid) {
+    // EDIT existing user
+    const idx = DB.users.findIndex(u => u.id === uid);
+    if(idx === -1) return;
+    // Check duplicate mobile (excluding current user)
+    if(DB.users.find(u => u.mobile === mob && u.id !== uid)) { toast('Yeh mobile kisi aur user ka hai', 'e'); return; }
+    DB.users[idx].name   = name;
+    DB.users[idx].mobile = mob;
+    DB.users[idx].email  = em || DB.users[idx].email;
+    DB.users[idx].role   = role;
+    DB.users[idx].addr   = addr;
+    if(pw) {
+      if(pw.length < 6) { toast('Password kam se kam 6 characters ka ho', 'e'); return; }
+      DB.users[idx].pw = pw;
+      toast('User update ho gaya aur password bhi change ho gaya! ✓');
+    } else {
+      toast('User update ho gaya! ✓');
+    }
+  } else {
+    // ADD new user
+    if(!pw) { toast('Naye user ke liye password zaroori hai', 'e'); return; }
+    if(pw.length < 6) { toast('Password kam se kam 6 characters ka ho', 'e'); return; }
+    if(DB.users.find(u => u.mobile === mob)) { toast('Yeh mobile pehle se registered hai', 'w'); return; }
+    if(em && DB.users.find(u => u.email === em)) { toast('Yeh email pehle se registered hai', 'w'); return; }
+    const newUser = {
+      id: 'u'+UID(), name, mobile: mob, email: em || mob+'@csc.in',
+      pw, role, addr, joined: NOW()
+    };
+    DB.users.push(newUser);
+    toast('Naya user add ho gaya! ✓');
+  }
+
+  cm('m-user');
+  saveDB();
+  rA();
+}
+
+function delUser(uid) {
+  const u = DB.users.find(u => u.id === uid);
+  if(!u) return;
+  if(u.role === 'admin') { toast('Admin user delete nahi kar sakte', 'e'); return; }
+  if(!confirm('⚠️ Kya aap "' + u.name + '" ko delete karna chahte hain?\n\nUnki saari applications bhi rahegi lekin user account hat jayega.')) return;
+  DB.users = DB.users.filter(u => u.id !== uid);
+  toast(u.name + ' delete ho gaya', 'w');
+  saveDB(); rA();
+}
+
+function viewUser(uid) {
+  const u = DB.users.find(u => u.id === uid);
+  if(!u) return;
+  const apps = DB.applications.filter(a => a.uid === uid);
+  $('ud-body').innerHTML = `
+    <div style="text-align:center;padding:8px 0 16px">
+      <div style="width:60px;height:60px;border-radius:50%;background:${u.role==='admin'?'var(--rbg)':'var(--bbg)'};display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:900;color:${u.role==='admin'?'var(--r)':'var(--b)'};margin:0 auto 8px">
+        ${u.name.charAt(0).toUpperCase()}
+      </div>
+      <div style="font-size:18px;font-weight:800;font-family:'Baloo 2',sans-serif">${u.name}</div>
+      <div style="margin-top:4px">${u.role==='admin'?'<span class="badge brd">🔐 Admin</span>':'<span class="badge bbl">👤 Customer</span>'}</div>
+    </div>
+    <div style="background:#f5f7ff;border-radius:10px;padding:13px;margin-bottom:14px">
+      <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--bd);font-size:12px"><span style="color:var(--t3)">📱 Mobile</span><strong>${u.mobile||'—'}</strong></div>
+      <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--bd);font-size:12px"><span style="color:var(--t3)">📧 Email</span><span>${u.email||'—'}</span></div>
+      <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--bd);font-size:12px"><span style="color:var(--t3)">📍 Address</span><span>${u.addr||'—'}</span></div>
+      <div style="display:flex;justify-content:space-between;padding:5px 0;font-size:12px"><span style="color:var(--t3)">📅 Joined</span><span>${u.joined||'—'}</span></div>
+    </div>
+    <div style="font-size:13px;font-weight:800;margin-bottom:10px;font-family:'Baloo 2',sans-serif">📋 Applications (${apps.length})</div>
+    ${apps.length ? apps.map(a => `
+      <div style="background:var(--wh);border:1px solid var(--bd);border-radius:8px;padding:10px 12px;margin-bottom:7px;display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <div style="font-size:12px;font-weight:800;color:var(--b)">${a.id}</div>
+          <div style="font-size:11px;color:var(--t3)">${a.svcName} · ${FD(a.date)}</div>
+        </div>
+        <div>${sbApp(a.status)}</div>
+      </div>`).join('') : '<div style="text-align:center;color:var(--t3);font-size:12px;padding:10px">Koi application nahi hai</div>'}`;
+  om('m-userdetail');
+}
+
+/* ════════════════════════════════════════
+   LOCAL STORAGE — DATA PERSISTENCE
+════════════════════════════════════════ */
+const STORAGE_KEY = 'apna_monu_csc_db';
+
+function saveDB() {
+  try {
+    const dataToSave = {
+      version: DB._version,
+      services: DB.services,
+      applications: DB.applications,
+      users: DB.users.filter(u => u.role !== 'admin'),
+      cfg: DB.cfg
+    };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(dataToSave));
+  } catch(e) {
+    console.warn('Storage save failed:', e);
+  }
+}
+
+function loadDB() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if(!saved) return;
+    const data = JSON.parse(saved);
+
+    // Check version — agar saved data purana ho toh ignore karo
+    // (naye default data ko priority do)
+    if(data.version && data.version < DB._version) {
+      localStorage.removeItem(STORAGE_KEY);
+      return;
+    }
+
+    // Restore services — localStorage ka data use karo (admin edits)
+    if(data.services && data.services.length > 0) {
+      // Naye default services jo localStorage mein nahi hain unhe bhi rakhna
+      const savedIds = data.services.map(s => s.id);
+      const newDefaultSvcs = DB.services.filter(s => !savedIds.includes(s.id));
+      DB.services = [...data.services, ...newDefaultSvcs];
+    }
+
+    // Restore applications
+    if(data.applications && data.applications.length > 0) {
+      DB.applications = data.applications;
+    }
+
+    // Restore registered customers
+    if(data.users && data.users.length > 0) {
+      const defaultIds = DB.users.map(u => u.id);
+      data.users.forEach(u => {
+        if(!defaultIds.includes(u.id)) DB.users.push(u);
+      });
+    }
+
+    // Restore config
+    if(data.cfg) {
+      DB.cfg = Object.assign({}, DB.cfg, data.cfg);
+    }
+  } catch(e) {
+    console.warn('Storage load failed:', e);
+    localStorage.removeItem(STORAGE_KEY);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  loadDB();   // Pehle saved data load karo
+  rHome();
+  updateNav();
+});
+</script>
+
+<!-- ═══ SOCIAL MEDIA FOOTER ═══ -->
+<style>
+.social-footer {
+  background: linear-gradient(135deg, #0d2b7a 0%, #1a3fa8 60%, #1565c0 100%);
+  padding: 44px 16px 28px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.social-footer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+}
+.sf-inner {
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.sf-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+.sf-brand-logo {
+  width: 42px;
+  height: 42px;
+  background: rgba(255,255,255,0.15);
+  border: 2px solid rgba(255,255,255,0.3);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+.sf-brand-name {
+  font-size: 20px;
+  font-weight: 800;
+  color: #fff;
+  font-family: 'Baloo 2', sans-serif;
+  letter-spacing: 0.3px;
+}
+.sf-tagline {
+  font-size: 12px;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 28px;
+  font-weight: 500;
+}
+.sf-divider {
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--ind), #fff, #046A38);
+  border-radius: 2px;
+  margin: 0 auto 28px;
+}
+.sf-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.55);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 22px;
+}
+.sf-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-bottom: 36px;
+}
+.sf-icon-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.sf-icon-wrap {
+  width: 62px;
+  height: 62px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.28s cubic-bezier(0.34,1.56,0.64,1);
+  position: relative;
+  overflow: hidden;
+}
+.sf-icon-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0);
+  transition: background 0.2s;
+  border-radius: inherit;
+}
+.sf-icon-link:hover .sf-icon-wrap {
+  transform: translateY(-6px) scale(1.08);
+  box-shadow: 0 18px 36px rgba(0,0,0,0.35);
+}
+.sf-icon-link:hover .sf-icon-wrap::after {
+  background: rgba(255,255,255,0.12);
+}
+.sf-icon-wrap svg {
+  width: 30px;
+  height: 30px;
+  fill: #fff;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.2s;
+}
+.sf-icon-link:hover svg {
+  transform: scale(1.1);
+}
+/* Instagram */
+.sf-icon-wrap.instagram {
+  background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  box-shadow: 0 6px 20px rgba(220,39,67,0.4);
+}
+/* YouTube */
+.sf-icon-wrap.youtube {
+  background: linear-gradient(135deg, #ff0000, #cc0000);
+  box-shadow: 0 6px 20px rgba(255,0,0,0.4);
+}
+/* Gmail */
+.sf-icon-wrap.gmail {
+  background: linear-gradient(135deg, #EA4335, #c5221f);
+  box-shadow: 0 6px 20px rgba(234,67,53,0.4);
+}
+/* Phone */
+.sf-icon-wrap.phone {
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  box-shadow: 0 6px 20px rgba(37,211,102,0.4);
+}
+.sf-icon-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  transition: color 0.2s;
+}
+.sf-icon-link:hover .sf-icon-label {
+  color: #fff;
+}
+.sf-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.sf-copy {
+  font-size: 11px;
+  color: rgba(255,255,255,0.45);
+  font-weight: 500;
+}
+.sf-copy a {
+  color: rgba(255,255,255,0.65);
+  text-decoration: none;
+  font-weight: 700;
+}
+.sf-copy a:hover { color: #fff; }
+.sf-dot { color: rgba(255,255,255,0.25); font-size: 11px; }
+@media(max-width:480px) {
+  .sf-icons { gap: 14px; }
+  .sf-icon-wrap { width: 54px; height: 54px; border-radius: 15px; }
+  .sf-icon-wrap svg { width: 26px; height: 26px; }
+  .sf-brand-name { font-size: 17px; }
+}
+</style>
+
+<footer class="social-footer">
+  <div class="sf-inner">
+    <div class="sf-brand">
+      <div class="sf-brand-logo">🏛️</div>
+      <div class="sf-brand-name">Monu CSC Centre</div>
+    </div>
+    <div class="sf-tagline">Common Service Centre • Meerut, Uttar Pradesh</div>
+    <div class="sf-divider"></div>
+    <div class="sf-title">Connect With Us</div>
+
+    <div class="sf-icons">
+
+      <!-- Instagram -->
+      <a class="sf-icon-link" href="https://www.instagram.com/monu__9557?igsh=MWdka2sxeWY4enczMg==" target="_blank" rel="noopener noreferrer" title="Follow on Instagram">
+        <div class="sf-icon-wrap instagram">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+        </div>
+        <span class="sf-icon-label">Instagram</span>
+      </a>
+
+      <!-- YouTube -->
+      <a class="sf-icon-link" href="https://youtube.com/@mr.monu77?si=G_paw0dLYE74IelD" target="_blank" rel="noopener noreferrer" title="Subscribe on YouTube">
+        <div class="sf-icon-wrap youtube">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+          </svg>
+        </div>
+        <span class="sf-icon-label">YouTube</span>
+      </a>
+
+      <!-- Gmail -->
+      <a class="sf-icon-link" href="mailto:teachingclass130@gmail.com" title="Send us an Email">
+        <div class="sf-icon-wrap gmail">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.909v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.909 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/>
+          </svg>
+        </div>
+        <span class="sf-icon-label">Gmail</span>
+      </a>
+
+      <!-- Phone / Call -->
+      <a class="sf-icon-link" href="tel:9557656030" title="Call Us Now">
+        <div class="sf-icon-wrap phone">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+          </svg>
+        </div>
+        <span class="sf-icon-label">Call Us</span>
+      </a>
+
+    </div>
+
+    <div class="sf-bottom">
+      <span class="sf-copy">© 2025 <a href="#">Monu CSC Centre</a></span>
+      <span class="sf-dot">•</span>
+      <span class="sf-copy">Meerut, Uttar Pradesh</span>
+      <span class="sf-dot">•</span>
+      <span class="sf-copy"><a href="tel:9557656030">📞 9557656030</a></span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
